@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Michael Early | Data & Economics</title>
+  <meta name="description" content="Michael Early — MA Economics. Data analyst and research analyst specializing in Python, SQL, econometrics, and ML. Portfolio and projects." />
+  <title>Michael Early | Data &amp; Economics</title>
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,22 +70,29 @@
       margin-bottom: 3.5rem;
     }
 
-   h2 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #e4e0d6;
-  padding-bottom: 0.5rem;
-}
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin: 0 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
 
+    .section-intro {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: -0.5rem 0 1.25rem;
+    }
 
-.project {
-  background: #ffffff;
-  border: 1px solid #e2e2e2;
-  border-radius: 12px;
-  padding: 18px 20px;
-  margin-bottom: 1.25rem;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
+    .project {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.35rem;
+      margin-bottom: 1rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
 
 
     .project:hover {
@@ -114,11 +122,53 @@
     }
 
     .contact p {
-      margin: 0.25rem 0;
+      margin: 0.35rem 0;
+    }
+
+    .resume-cta {
+      display: inline-block;
+      padding: 0.6rem 1.25rem;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: opacity 0.15s ease;
+    }
+
+    .resume-cta:hover {
+      opacity: 0.9;
+      text-decoration: none;
+    }
+
+    .skills-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .skills-list li {
+      display: flex;
+      gap: 0.35rem;
+      font-size: 0.95rem;
+    }
+
+    .skills-list strong {
+      min-width: 8rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    @media (max-width: 520px) {
+      .skills-list { grid-template-columns: 1fr; }
     }
 
     footer {
       margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
       color: var(--muted);
       font-size: 0.85rem;
     }
@@ -139,7 +189,7 @@
         MA Economics · Data Analyst & Research Analyst · Sports Analytics
       </p>
       <p class="hero-tagline">
-        Python, SQL, econometrics &amp; ML — turning data into clear, policy-relevant insights.
+        Python, SQL, Econometrics &amp; ML — turning data into clear, policy-relevant insights.
       </p>
     </header>
 
@@ -160,6 +210,7 @@
 
     <section>
       <h2>Projects</h2>
+      <p class="section-intro">Policy evaluation, labor economics, sports analytics, and forecasting — with links to full write-ups and papers.</p>
 
       <div class="project">
         <div class="project-title">
@@ -198,20 +249,20 @@
       </div>
 
     </section>
-<section>
-  <h2>Technical Skills</h2>
-  <p>
-    <strong>Data & Analytics:</strong>  Power BI, Stata, R, Python, C++<br>
-    <strong>Machine Learning:</strong> Open AI, RoBERTa, Hugging Face, Pandas, NumPy<br>
-    <strong>Creative Collaboration:</strong> Lucidchart, Miro, Canva<br>
-    <strong>Research:</strong> Micro Econometrics, Forecasting
-  </p>
-</section>
+    <section>
+      <h2>Technical Skills</h2>
+      <ul class="skills-list">
+        <li><strong>Data &amp; analytics</strong> Power BI, Stata, R, Python, SQL, C++</li>
+        <li><strong>Machine learning</strong> Pandas, NumPy, Hugging Face, RoBERTa</li>
+        <li><strong>Research</strong> Microeconometrics, forecasting, causal inference</li>
+        <li><strong>Collaboration</strong> Lucidchart, Miro, Canva</li>
+      </ul>
+    </section>
 
     <section>
       <h2>Resume</h2>
       <p>
-        <a href="resume.pdf">Resume (PDF)</a>
+        <a href="resume.pdf" class="resume-cta">Download Resume (PDF)</a>
       </p>
     </section>
 
