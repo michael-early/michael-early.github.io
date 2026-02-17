@@ -1,52 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AB 1228 Minimum Wage Analysis</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fast-Food Minimum Wage (AB 1228)</title>
+
   <style>
-    body { font-family: Arial; max-width: 800px; margin: auto; padding: 40px; }
-    h1, h2 { color: #222; }
-    a { color: #0366d6; text-decoration: none; }
-    ul { line-height: 1.6; }
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      line-height: 1.6;
+      color: #111;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      margin-top: 2.5rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.4rem;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .back {
+      margin-bottom: 2rem;
+      display: inline-block;
+    }
   </style>
 </head>
+
 <body>
 
-<a href="/">← Back to Home</a>
+  <a class="back" href="/">← Back to Home</a>
 
-<h1>Fast-Food Minimum Wage (AB 1228)(Working Paper)</h1>
+  <h1>Fast-Food Minimum Wage (AB 1228)</h1>
+  <p><strong>Policy evaluation · Difference-in-differences · Labor economics</strong></p>
 
-<p><b>Question:</b>  
-What was the short-run impact of California’s $20 fast-food minimum wage on youth employment?</p>
+  <h2>Problem</h2>
+  <p>
+    California’s AB 1228 raised the fast-food minimum wage to $20. Policymakers and
+    employers needed evidence on short-run employment effects, especially for youth.
+    I asked: what was the immediate impact on youth employment in California relative
+    to comparable states?
+  </p>
 
-<h2>Data</h2>
-<ul>
-  <li>CPS ORG microdata (IPUMS)</li>
-  <li>California vs bordering control states</li>
-  <li>Sample: ages 16–24</li>
-</ul>
+  <h2>Method</h2>
+  <p>
+    I used CPS ORG microdata (IPUMS) for California and bordering control states,
+    focusing on ages 16–24. I ran a difference-in-differences design with robust
+    standard errors to estimate the causal effect of the policy on youth employment.
+  </p>
 
-<h2>Methodology</h2>
-<ul>
-  <li>Difference-in-Differences (DiD)</li>
-  <li>Robust standard errors</li>
-</ul>
+  <h2>Result</h2>
+  <p>
+    No immediate collapse in youth employment. Effects were heterogeneous by metro
+    area, and results were consistent with partial adjustment rather than large
+    disemployment. Full specification, robustness checks, and discussion are in the
+    working paper below.
+  </p>
 
-<h2>Key Findings</h2>
-<ul>
-  <li>No immediate collapse in youth employment</li>
-  <li>Heterogeneous effects by metro area</li>
-  <li>Results consistent with partial adjustment</li>
-</ul>
-
-<h2>Code & Materials</h2>
-<p>
-  <a href="AB 1228 Working Paper.pdf" target="_blank" rel="noopener">
-    Download Project PDF
-  </a>
-</p>
-
+  <p>
+    <a href="AB 1228 Working Paper.pdf" target="_blank" rel="noopener">
+      Full paper (PDF)
+    </a>
+  </p>
 
 </body>
 </html>
