@@ -28,6 +28,7 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      border-top: 3px solid var(--accent);
     }
 
     .container {
@@ -190,6 +191,56 @@
       .skills-grid { grid-template-columns: 1fr; }
     }
 
+    .exp {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-title {
+      font-weight: 600;
+      font-size: 0.97rem;
+    }
+
+    .exp-company {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 0.1rem;
+    }
+
+    .exp-date {
+      color: var(--muted);
+      font-size: 0.85rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .exp-bullets {
+      margin: 0.35rem 0 0 1.1rem;
+      padding: 0;
+    }
+
+    .exp-bullets li {
+      font-size: 0.91rem;
+      color: #334155;
+      margin-bottom: 0.25rem;
+      line-height: 1.55;
+    }
+
     footer {
       margin-top: 4rem;
       padding-top: 1.5rem;
@@ -221,14 +272,47 @@
     <section>
       <h2>About Me</h2>
       <p>
-        I am a Master’s student in Economics specializing in quantitative methods, causal inference, and applied data science.
-        My work applies econometric identification strategies — difference-in-differences, regression discontinuity, instrumental variables —
-        alongside machine learning for prediction, classification, and NLP.
+        MA Economics candidate at Cal State Fullerton (GPA 3.93), specializing in quantitative methods, causal inference,
+        and applied data science. My work applies econometric identification strategies — difference-in-differences,
+        regression discontinuity, instrumental variables — alongside machine learning for prediction, classification, and NLP.
       </p>
       <p>
-        I focus on labor markets, policy evaluation, and market structure, building analyses from raw data through
-        modeling to interpretable results. I emphasize rigorous empirical design and clean, reproducible code.
+        Currently a Graduate Intern in Enterprise Architecture at First American, where I build LLM-powered tools and
+        Power BI dashboards. My research focuses on labor markets, policy evaluation, and market structure — from raw
+        data through modeling to interpretable results.
       </p>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+
+      <div class="exp">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Graduate Intern — Enterprise Architecture</div>
+            <div class="exp-company">First American Strategic Tech Team · Santa Ana, CA</div>
+          </div>
+          <div class="exp-date">Jun 2025 – Present</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Built and deployed a GPT-based tool to evaluate business architecture, identifying inefficiencies and informing structural redesign decisions</li>
+          <li>Led migration of a 10,000+ observation database, ensuring relational consistency; delivered Power BI dashboards to improve cross-departmental decision-making</li>
+        </ul>
+      </div>
+
+      <div class="exp">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Teaching Associate &amp; Graduate Research Assistant</div>
+            <div class="exp-company">CSUF Economics Department · Fullerton, CA</div>
+          </div>
+          <div class="exp-date">Jan 2025 – Present</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Led weekly section of 40 students in undergraduate economics</li>
+          <li>Applied Python and Excel to analyze institutional enrollment data, surfacing trends for departmental planning</li>
+        </ul>
+      </div>
     </section>
 
     <section>
@@ -292,25 +376,30 @@
             <span class="skill-tag">IV</span>
             <span class="skill-tag">RD</span>
             <span class="skill-tag">Panel methods</span>
+            <span class="skill-tag">Statsmodels</span>
             <span class="skill-tag">Causal inference</span>
           </div>
         </div>
         <div>
-          <div class="skill-label">ML &amp; Data Science</div>
+          <div class="skill-label">ML &amp; AI</div>
           <div class="skill-tags">
             <span class="skill-tag">Scikit-learn</span>
-            <span class="skill-tag">Pandas</span>
-            <span class="skill-tag">NumPy</span>
-            <span class="skill-tag">NLP</span>
+            <span class="skill-tag">Hugging Face</span>
+            <span class="skill-tag">Transformers</span>
             <span class="skill-tag">RoBERTa</span>
+            <span class="skill-tag">OpenAI API</span>
+            <span class="skill-tag">PyTorch</span>
           </div>
         </div>
         <div>
-          <div class="skill-label">Visualization</div>
+          <div class="skill-label">Data &amp; Visualization</div>
           <div class="skill-tags">
-            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">SciPy</span>
             <span class="skill-tag">Matplotlib</span>
             <span class="skill-tag">Seaborn</span>
+            <span class="skill-tag">Power BI</span>
           </div>
         </div>
       </div>
@@ -326,6 +415,7 @@
     <section class="contact">
       <h2>Contact</h2>
       <p>Email: <a href="mailto:michaelarly.mpe@gmail.com">michaelarly.mpe@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/michael-early-">linkedin.com/in/michael-early-</a></p>
       <p>GitHub: <a href="https://github.com/michael-early">github.com/michael-early</a></p>
     </section>
 
