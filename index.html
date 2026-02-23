@@ -13,11 +13,13 @@
 
   <style>
     :root {
-      --text: #111;
-      --muted: #555;
+      --text: #0f172a;
+      --muted: #64748b;
       --accent: #2563eb;
-      --border: #e5e7eb;
-      --bg: #f7f1e3;
+      --accent-light: #eff6ff;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --surface: #f8fafc;
     }
 
     body {
@@ -37,33 +39,41 @@
     /* HERO HEADER */
     .hero {
       text-align: center;
-      margin-bottom: 4rem;
+      margin-bottom: 3.5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
     }
 
     .headshot {
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 1rem;
-      border: 1px solid var(--border);
+      margin-bottom: 1.25rem;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 3px var(--border), 0 4px 16px rgba(0,0,0,0.08);
     }
 
     h1 {
-      font-size: 2.75rem;
+      font-size: 2.5rem;
       margin: 0.5rem 0 0.25rem;
+      letter-spacing: -0.02em;
     }
 
     .hero-subtitle {
-      color: var(--muted);
-      font-size: 1.05rem;
-      margin: 0;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0.75rem 0 0;
     }
 
     .hero-tagline {
       color: var(--muted);
       font-size: 0.95rem;
-      margin: 0.5rem 0 0;
+      margin: 0.6rem auto 0;
+      max-width: 520px;
     }
 
     section {
@@ -71,44 +81,46 @@
     }
 
     h2 {
-      font-size: 1.35rem;
-      font-weight: 600;
-      margin: 0 0 1rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 1.25rem;
       padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--border);
-      color: var(--text);
     }
 
     .section-intro {
       color: var(--muted);
-      font-size: 0.95rem;
-      margin: -0.5rem 0 1.25rem;
+      font-size: 0.92rem;
+      margin: -0.75rem 0 1.5rem;
     }
 
     .project {
-      background: #fff;
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem 1.35rem;
-      margin-bottom: 1rem;
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1.1rem 1.35rem;
+      margin-bottom: 0.75rem;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-
     .project:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.1);
     }
 
     .project-title {
       font-weight: 600;
-      font-size: 1.05rem;
-      margin-bottom: 0.25rem;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
     }
 
     .project-desc {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     a {
@@ -123,46 +135,59 @@
 
     .contact p {
       margin: 0.35rem 0;
+      font-size: 0.95rem;
     }
 
     .resume-cta {
       display: inline-block;
-      padding: 0.6rem 1.25rem;
+      padding: 0.6rem 1.4rem;
       background: var(--accent);
       color: #fff !important;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: 600;
-      transition: opacity 0.15s ease;
+      font-size: 0.9rem;
+      letter-spacing: 0.01em;
+      transition: background 0.15s ease;
     }
 
     .resume-cta:hover {
-      opacity: 0.9;
+      background: #1d4ed8;
       text-decoration: none;
     }
 
-    .skills-list {
+    .skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.5rem 2rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+      gap: 1.5rem 2rem;
     }
 
-    .skills-list li {
+    .skill-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-tags {
       display: flex;
+      flex-wrap: wrap;
       gap: 0.35rem;
-      font-size: 0.95rem;
     }
 
-    .skills-list strong {
-      min-width: 8rem;
-      color: var(--text);
+    .skill-tag {
+      background: var(--accent-light);
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.8rem;
       font-weight: 500;
     }
 
     @media (max-width: 520px) {
-      .skills-list { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
     }
 
     footer {
@@ -249,12 +274,46 @@
     </section>
     <section>
       <h2>Technical Skills</h2>
-      <ul class="skills-list">
-        <li><strong>Languages</strong> Python, SQL, R, Stata, C++</li>
-        <li><strong>Econometrics</strong> DiD, IV, RD, panel methods, causal inference</li>
-        <li><strong>ML &amp; data science</strong> Scikit-learn, Pandas, NumPy, NLP (RoBERTa)</li>
-        <li><strong>Visualization</strong> Power BI, Matplotlib, Seaborn, Canva</li>
-      </ul>
+      <div class="skills-grid">
+        <div>
+          <div class="skill-label">Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">Stata</span>
+            <span class="skill-tag">C++</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-label">Econometrics</div>
+          <div class="skill-tags">
+            <span class="skill-tag">DiD</span>
+            <span class="skill-tag">IV</span>
+            <span class="skill-tag">RD</span>
+            <span class="skill-tag">Panel methods</span>
+            <span class="skill-tag">Causal inference</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-label">ML &amp; Data Science</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">NLP</span>
+            <span class="skill-tag">RoBERTa</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-label">Visualization</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section>

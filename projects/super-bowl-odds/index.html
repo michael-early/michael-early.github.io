@@ -5,29 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Forecasting Super Bowl Odds</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --border: #e2e8f0;
+    }
+
     body {
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 800px;
+      max-width: 760px;
       margin: 0 auto;
       padding: 48px 24px;
-      line-height: 1.6;
-      color: #111;
+      line-height: 1.7;
+      color: var(--text);
+      background: #fff;
     }
 
     h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.02em;
     }
 
     h2 {
-      margin-top: 2.5rem;
-      border-bottom: 1px solid #e5e7eb;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 2.5rem 0 0.75rem;
       padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    p {
+      color: #334155;
+      font-size: 0.97rem;
+      margin: 0 0 0.75rem;
+    }
+
+    ul {
+      margin: 0 0 0.75rem 1.25rem;
+      padding: 0;
+    }
+
+    li {
+      color: #334155;
+      font-size: 0.97rem;
+      margin-bottom: 0.3rem;
     }
 
     a {
-      color: #2563eb;
+      color: var(--accent);
       text-decoration: none;
       font-weight: 500;
     }
@@ -36,13 +72,53 @@
       text-decoration: underline;
     }
 
-    ul {
-      margin-left: 1.2rem;
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-weight: 400;
     }
 
-    .back {
-      margin-bottom: 2rem;
+    .back:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.25rem 0 2rem;
+    }
+
+    .tag {
+      background: var(--accent-light);
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .paper-link {
       display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.55rem 1.25rem;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.15s ease;
+    }
+
+    .paper-link:hover {
+      background: #1d4ed8;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -52,7 +128,11 @@
   <a class="back" href="/">← Back to Home</a>
 
   <h1>Forecasting Super Bowl Odds</h1>
-  <p><strong>Statistical forecasting · Market efficiency · Time-series econometrics</strong></p>
+  <div class="tags">
+    <span class="tag">Statistical forecasting</span>
+    <span class="tag">Market efficiency</span>
+    <span class="tag">Time-series econometrics</span>
+  </div>
 
   <h2>Research Question</h2>
   <p>
@@ -85,8 +165,8 @@
 
   <h2>Paper</h2>
   <p>
-  <a href="Forecasting NFL Super Bowl Odds.pdf" target="_blank" rel="noopener">
-    Download Project PDF
+  <a href="Forecasting NFL Super Bowl Odds.pdf" class="paper-link" target="_blank" rel="noopener">
+    Full paper (PDF)
   </a>
 </p>
 
