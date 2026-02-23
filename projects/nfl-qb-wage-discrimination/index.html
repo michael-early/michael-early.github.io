@@ -52,27 +52,32 @@
   <a class="back" href="/">← Back to Home</a>
 
   <h1>NFL Quarterback Wage Discrimination</h1>
-  <p><strong>Labor economics · Sports analytics · Regression analysis</strong></p>
+  <p><strong>Labor econometrics · Wage decomposition · OLS regression</strong></p>
 
   <h2>Problem</h2>
   <p>
     Do NFL quarterbacks receive different guaranteed compensation on their second
-    contracts by race after controlling for performance and market conditions?
-    Answering this tests whether labor markets in a high-visibility, performance-tracked
-    setting show wage gaps unexplained by productivity.
+    contracts by race, after conditioning on performance and team market conditions?
+    This tests whether a high-transparency labor market — with rich, publicly observable
+    productivity data — still produces wage gaps unexplained by output.
   </p>
 
   <h2>Method</h2>
   <p>
-    I built a dataset of quarterbacks drafted 2011–2020, with guaranteed money on
-    second contracts (Spotrac), QBR, draft position, and team salary cap. I ran
-    OLS regressions with a race indicator and controls for performance, draft
-    capital, and cap space, and used a RESET test to check functional form.
+    I hand-collected a dataset of QBs drafted 2011–2020, merging guaranteed contract
+    values (Spotrac) with QBR, draft position, and team salary cap data. I estimated
+    OLS wage equations with a race indicator alongside controls for performance,
+    draft capital, and cap space, and applied a Ramsey RESET test to verify
+    functional form. Coefficients were interpreted as a Blinder-Oaxaca style
+    decomposition of the conditional wage gap.
   </p>
 
   <h2>Result</h2>
   <p>
-    After controlling for on-field performance and team context, quarterback salary differences were explained by measurable productivity rather than race. Pay was most strongly driven by QBR and available team cap space, indicating teams price quarterbacks as performance-dependent assets rather than demographic signals.
+    The conditional race coefficient was statistically insignificant. Guaranteed pay
+    was overwhelmingly driven by QBR and available cap space, indicating the market
+    prices quarterbacks on measurable productivity rather than demographic signals.
+    Full regression tables and robustness checks are in the paper below.
   </p>
 
   <p>

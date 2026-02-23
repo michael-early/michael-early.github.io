@@ -52,34 +52,35 @@
   <a class="back" href="/">← Back to Home</a>
 
   <h1>Forecasting Super Bowl Odds</h1>
-  <p><strong>Time-Series & Sports Economics</strong></p>
+  <p><strong>Statistical forecasting · Market efficiency · Time-series econometrics</strong></p>
 
   <h2>Research Question</h2>
   <p>
-    Can betting market odds for Super Bowl futures be used to generate accurate
-    forecasts of championship outcomes, and do these markets exhibit efficiency
-    over the NFL season?
+    Are NFL Super Bowl betting markets informationally efficient, and can time-series
+    models exploit predictable structure in futures odds to outperform market-implied
+    probabilities?
   </p>
 
   <h2>Data</h2>
   <ul>
-    <li>Historical Super Bowl futures odds</li>
-    <li>Implied probabilities derived from betting lines</li>
-    <li>Weekly observations across NFL seasons</li>
+    <li>Historical Super Bowl futures odds converted to implied probabilities</li>
+    <li>Weekly panel of odds across all 32 teams over multiple NFL seasons</li>
+    <li>Overround-adjusted probabilities to correct for bookmaker margin</li>
   </ul>
 
-  <h2>Methodology</h2>
+  <h2>Method</h2>
   <ul>
-    <li>ARIMA and LSTM time-series models</li>
-    <li>Probability calibration and forecast evaluation</li>
-    <li>Comparison of model forecasts vs market-implied probabilities</li>
+    <li>ARIMA and LSTM models fit to weekly implied probability series</li>
+    <li>Forecast evaluation using Brier scores and log-loss across forecast horizons</li>
+    <li>Statistical tests for weak-form market efficiency (autocorrelation, variance ratio)</li>
+    <li>Model forecasts benchmarked against naive and market-implied baselines</li>
   </ul>
 
   <h2>Key Findings</h2>
   <ul>
-    <li>Betting markets rapidly incorporate new information</li>
-    <li>Short-horizon forecasts outperform long-horizon predictions</li>
-    <li>Limited but detectable inefficiencies early in the season</li>
+    <li>Markets rapidly incorporate new information — consistent with near-efficiency</li>
+    <li>Short-horizon model forecasts outperform long-horizon predictions</li>
+    <li>Detectable early-season autocorrelation suggests limited, transient inefficiency</li>
   </ul>
 
   <h2>Paper</h2>

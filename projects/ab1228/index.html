@@ -48,29 +48,30 @@
   <a class="back" href="/">← Back to Home</a>
 
   <h1>Fast-Food Minimum Wage (AB 1228)</h1>
-  <p><strong>Policy evaluation · Difference-in-differences · Labor economics</strong></p>
+  <p><strong>Causal inference · Quasi-experimental design · Applied microeconometrics</strong></p>
 
   <h2>Problem</h2>
   <p>
-    California’s AB 1228 raised the fast-food minimum wage to $20. Policymakers and
-    employers needed evidence on short-run employment effects, especially for youth.
-    I asked: what was the immediate impact on youth employment in California relative
-    to comparable states?
+    California’s AB 1228 raised the fast-food minimum wage to $20. I asked: what was
+    the short-run causal effect on youth employment in California relative to comparable
+    control states — and can we isolate that effect from confounding macroeconomic trends?
   </p>
 
   <h2>Method</h2>
   <p>
-    I used CPS ORG microdata (IPUMS) for California and bordering control states,
-    focusing on ages 16–24. I ran a difference-in-differences design with robust
-    standard errors to estimate the causal effect of the policy on youth employment.
+    I built a microdata panel from CPS ORG extracts (IPUMS), restricting to ages 16–24
+    in California and neighboring control states. I estimated a difference-in-differences
+    model with two-way fixed effects and heteroskedasticity-robust standard errors,
+    verified the parallel pre-trends assumption, and ran a Triple-Difference specification
+    to separate fast-food sector effects from broader youth labor market shifts.
   </p>
 
   <h2>Result</h2>
   <p>
-    No immediate collapse in youth employment. Effects were heterogeneous by metro
-    area, and results were consistent with partial adjustment rather than large
-    disemployment. Full specification, robustness checks, and discussion are in the
-    working paper below.
+    No statistically significant collapse in youth employment. Effects were heterogeneous
+    by metro area, consistent with partial labor market adjustment rather than large-scale
+    disemployment. Full specification, robustness checks, and pre-trends tests are in
+    the working paper below.
   </p>
 
   <p>
