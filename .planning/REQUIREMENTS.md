@@ -22,7 +22,7 @@
 
 - [x] **SAFE-01**: Workflow skips if triggered by the bot actor (prevents infinite loops)
 - [ ] **SAFE-02**: Agent never reads or writes binary files (PDFs, images)
-- [ ] **SAFE-03**: Edited HTML is validated before committing; malformed output is rejected
+- ~~**SAFE-03**: Edited HTML is validated before committing; malformed output is rejected~~ *(dropped — owner reviews PR diff before merging)*
 
 ## v2 Requirements
 
@@ -58,7 +58,7 @@
 | SAFE-02 | Phase 2 | Pending |
 | PR-01 | Phase 3 | Pending |
 | PR-02 | Phase 3 | Pending |
-| SAFE-03 | Phase 4 | Pending |
+| SAFE-03 | Phase 4 | dropped |
 
 **Coverage:**
 - v1 requirements: 7 total
