@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 1 context gathered
-last_updated: "2026-03-12T03:20:02.559Z"
+stopped_at: Completed 01-workflow-scaffold/01-01-PLAN.md
+last_updated: "2026-03-12T04:18:17.847Z"
 last_activity: 2026-03-11 — Roadmap created, phases derived from requirements
 progress:
   total_phases: 4
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_plans: 2
+  completed_plans: 1
   percent: 0
 ---
 
@@ -50,6 +50,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: -
 
 *Updated after each plan completion*
+| Phase 01-workflow-scaffold P01 | 8 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -58,6 +59,9 @@ Progress: [░░░░░░░░░░] 0%
 - Project init: Security gates (TRIG-01, SAFE-01) placed in Phase 1 before any API calls are wired — prevents runaway costs from trigger loops
 - Project init: `gh` CLI preferred over PyGithub for PR creation — avoids extra dependency; confirm in Phase 3 planning
 - Project init: Full file round-trips to Claude preferred over diff parsing — site HTML files are small enough, diffs are fragile
+- [Phase 01-workflow-scaffold]: Owner guard uses github.event.issue.user.login (issue author) not github.actor — prevents false skips on cross-actor flows
+- [Phase 01-workflow-scaffold]: Bot guard exits 0 not 1 — skipping bot-triggered runs is intentional, not a failure
+- [Phase 01-workflow-scaffold]: Step order locked: bot-guard → secret-assert → checkout → agent — minimum permissions: issues:read, contents:read
 
 ### Pending Todos
 
@@ -70,6 +74,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T03:20:02.551Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-workflow-scaffold/01-CONTEXT.md
+Last session: 2026-03-12T04:18:17.845Z
+Stopped at: Completed 01-workflow-scaffold/01-01-PLAN.md
+Resume file: None

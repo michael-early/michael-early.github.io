@@ -7,7 +7,7 @@
 
 ### Triggering
 
-- [ ] **TRIG-01**: Agent only runs when the issue author is the repository owner
+- [x] **TRIG-01**: Agent only runs when the issue author is the repository owner
 
 ### File Editing
 
@@ -20,7 +20,7 @@
 
 ### Safety
 
-- [ ] **SAFE-01**: Workflow skips if triggered by the bot actor (prevents infinite loops)
+- [x] **SAFE-01**: Workflow skips if triggered by the bot actor (prevents infinite loops)
 - [ ] **SAFE-02**: Agent never reads or writes binary files (PDFs, images)
 - [ ] **SAFE-03**: Edited HTML is validated before committing; malformed output is rejected
 
@@ -52,8 +52,8 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| TRIG-01 | Phase 1 | Pending |
-| SAFE-01 | Phase 1 | Pending |
+| TRIG-01 | Phase 1 | Complete |
+| SAFE-01 | Phase 1 | Complete |
 | EDIT-01 | Phase 2 | Pending |
 | SAFE-02 | Phase 2 | Pending |
 | PR-01 | Phase 3 | Pending |
