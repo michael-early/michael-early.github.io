@@ -56,15 +56,15 @@
 | SAFE-01 | Phase 1 | Complete |
 | EDIT-01 | Phase 2 | Pending |
 | SAFE-02 | Phase 2 | Pending |
-| PR-01 | Phase 3 | Pending |
-| PR-02 | Phase 3 | Pending |
-| SAFE-03 | Phase 4 | dropped |
+| PR-01 | Phase 2 | Pending |
+| PR-02 | Phase 2 | Pending |
+| SAFE-03 | — | dropped |
 
 **Coverage:**
 - v1 requirements: 7 total
-- Mapped to phases: 7
+- Mapped to phases: 6 (SAFE-03 dropped)
 - Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-11*
-*Last updated: 2026-03-11 — phase assignments updated after roadmap creation*
+*Last updated: 2026-03-12 — phase assignments updated after claude-code-action redesign (phases 3+4 collapsed into phase 2, SAFE-03 dropped)*
