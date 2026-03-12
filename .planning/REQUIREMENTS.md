@@ -53,12 +53,12 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | TRIG-01 | Phase 1 | Pending |
-| EDIT-01 | Phase 2 | Pending |
-| PR-01 | Phase 2 | Pending |
-| PR-02 | Phase 2 | Pending |
 | SAFE-01 | Phase 1 | Pending |
+| EDIT-01 | Phase 2 | Pending |
 | SAFE-02 | Phase 2 | Pending |
-| SAFE-03 | Phase 3 | Pending |
+| PR-01 | Phase 3 | Pending |
+| PR-02 | Phase 3 | Pending |
+| SAFE-03 | Phase 4 | Pending |
 
 **Coverage:**
 - v1 requirements: 7 total
@@ -67,4 +67,4 @@
 
 ---
 *Requirements defined: 2026-03-11*
-*Last updated: 2026-03-11 after initial definition*
+*Last updated: 2026-03-11 — phase assignments updated after roadmap creation*
