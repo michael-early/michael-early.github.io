@@ -7,6 +7,7 @@ on:
 jobs:
   agent:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     # Job-level if: evaluates expressions natively without ${{ }} wrappers.
     # Owner-only guard and bot-actor skip combined here — a job-level condition
     # is the only reliable way to halt a job in GitHub Actions.
@@ -19,8 +20,9 @@ jobs:
       issues: write
 
     steps:
-      # persist-credentials: true (default) must remain so the action can push branches.
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true  # required: action pushes agent/issue-* branches
 
       # Pin to a commit SHA in production to prevent supply-chain risk from tag mutation.
       # @v1 is acceptable for a personal project where the risk tolerance is higher.
