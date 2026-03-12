@@ -28,7 +28,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. The workflow exits cleanly when triggered by the bot actor (no infinite loop)
   3. The agent script prints issue env vars and exits 0 — end-to-end plumbing verified with no API calls
   4. Pushing to main is blocked by branch protection; the workflow only creates feature branches
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Create workflow YAML and Python agent stub
+- [ ] 01-02-PLAN.md — Write README setup docs and verify end-to-end in live GitHub
 
 ### Phase 2: Claude Integration
 **Goal**: The agent reads the issue body and relevant site files, calls Claude, and writes the edited files to disk — no branch or PR yet
@@ -67,7 +71,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Workflow Scaffold | 0/TBD | Not started | - |
+| 1. Workflow Scaffold | 0/2 | Not started | - |
 | 2. Claude Integration | 0/TBD | Not started | - |
 | 3. PR Creation | 0/TBD | Not started | - |
 | 4. Output Hardening | 0/TBD | Not started | - |
