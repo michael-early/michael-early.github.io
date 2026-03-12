@@ -1,0 +1,41 @@
+name: Portfolio Agent
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  agent:
+    runs-on: ubuntu-latest
+    if: github.event.issue.user.login == github.repository_owner
+    permissions:
+      issues: read
+      contents: read
+
+    steps:
+      - name: Skip if bot actor
+        env:
+          ACTOR: ${{ github.actor }}
+        run: |
+          if [ "$ACTOR" = "github-actions[bot]" ]; then
+            echo "Skipping: triggered by bot actor"
+            exit 0
+          fi
+
+      - name: Assert secrets wired
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ERROR: ANTHROPIC_API_KEY secret is not set"
+            exit 1
+          fi && echo "Secrets check passed"
+
+      - uses: actions/checkout@v4
+
+      - name: Run agent stub
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: python agent/run.py
