@@ -7,35 +7,40 @@ on:
 jobs:
   agent:
     runs-on: ubuntu-latest
-    if: github.event.issue.user.login == github.repository_owner
+    # Job-level if: evaluates expressions natively without ${{ }} wrappers.
+    # Owner-only guard and bot-actor skip combined here — a job-level condition
+    # is the only reliable way to halt a job in GitHub Actions.
+    if: |
+      github.event.issue.user.login == github.repository_owner &&
+      github.actor != 'github-actions[bot]'
     permissions:
-      issues: read
-      contents: read
+      contents: write
+      pull-requests: write
+      issues: write
 
     steps:
-      - name: Skip if bot actor
-        env:
-          ACTOR: ${{ github.actor }}
-        run: |
-          if [ "$ACTOR" = "github-actions[bot]" ]; then
-            echo "Skipping: triggered by bot actor"
-            exit 0
-          fi
-
-      - name: Assert secrets wired
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          if [ -z "$ANTHROPIC_API_KEY" ]; then
-            echo "ERROR: ANTHROPIC_API_KEY secret is not set"
-            exit 1
-          fi && echo "Secrets check passed"
-
+      # persist-credentials: true (default) must remain so the action can push branches.
       - uses: actions/checkout@v4
 
-      - name: Run agent stub
+      # Pin to a commit SHA in production to prevent supply-chain risk from tag mutation.
+      # @v1 is acceptable for a personal project where the risk tolerance is higher.
+      - uses: anthropics/claude-code-action@v1
+        with:
+          prompt: |
+            You are a portfolio site assistant. The repo owner has filed a GitHub
+            issue requesting a change to their portfolio site.
+
+            Issue: ${{ github.event.issue.title }}
+            Request: ${{ github.event.issue.body }}
+
+            Rules:
+            - Only edit HTML and CSS files: index.html and projects/*/index.html
+            - Never read or modify binary files (PDFs, images, .jpeg, .pdf)
+            - Create a branch named agent/issue-${{ github.event.issue.number }}
+            - Open a PR against main summarizing what changed and why
+            - Include "Closes #${{ github.event.issue.number }}" in the PR body
+
+            Make the requested changes and open the PR.
         env:
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          ISSUE_TITLE: ${{ github.event.issue.title }}
-          ISSUE_BODY: ${{ github.event.issue.body }}
-        run: python agent/run.py
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
