@@ -12,7 +12,7 @@ Build a GitHub Actions workflow that watches for issues filed by the repo owner,
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Workflow Scaffold** - Trigger, security guards, and secret wiring — no API calls yet
+- [x] **Phase 1: Workflow Scaffold** - Trigger, security guards, and secret wiring — no API calls yet
 - [ ] **Phase 2: Claude Integration** - Agent reads files, calls Claude, writes edits to disk
 - [ ] **Phase 3: PR Creation** - Branch, commit, open PR, and post issue comment
 - [ ] **Phase 4: Output Hardening** - HTML validation and idempotency guard before commit
@@ -31,8 +31,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Create workflow YAML and Python agent stub
-- [ ] 01-02-PLAN.md — Write README setup docs and verify end-to-end in live GitHub
+- [x] 01-01-PLAN.md — Create workflow YAML and Python agent stub
+- [x] 01-02-PLAN.md — Write README setup docs and verify end-to-end in live GitHub
 
 ### Phase 2: Claude Integration
 **Goal**: The agent reads the issue body and relevant site files, calls Claude, and writes the edited files to disk — no branch or PR yet
@@ -71,7 +71,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Workflow Scaffold | 1/2 | In Progress|  |
+| 1. Workflow Scaffold | 2/2 | Complete | 2026-03-12 |
 | 2. Claude Integration | 0/TBD | Not started | - |
 | 3. PR Creation | 0/TBD | Not started | - |
 | 4. Output Hardening | 0/TBD | Not started | - |
