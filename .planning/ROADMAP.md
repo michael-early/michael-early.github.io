@@ -1,8 +1,8 @@
-# Roadmap: Portfolio Site Agent
+# Roadmap: Portfolio Site — Claude Code Workflow
 
 ## Overview
 
-Build a GitHub Actions workflow that watches for issues filed by the repo owner, calls the Claude API to make the requested HTML/CSS edits, and opens a Pull Request for human review. The agent never pushes directly to main — every change goes through PR review first.
+Set up the portfolio repo so Claude Code can make site changes directly from the terminal. Remove the GitHub Actions workflow built in Phase 1 and improve CLAUDE.md with enough context that edits can be made without clarifying questions.
 
 ## Phases
 
@@ -13,7 +13,7 @@ Build a GitHub Actions workflow that watches for issues filed by the repo owner,
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Workflow Scaffold** - Trigger, security guards, and secret wiring — no API calls yet
-- [ ] **Phase 2: Claude Code Action Integration** - OAuth token wired, action fires on owner issue, PR opens with HTML edits on `agent/issue-{N}` branch
+- [ ] **Phase 2: Cleanup + CLAUDE.md** - Remove GitHub Actions workflow, improve CLAUDE.md, link housing-ml
 
 ## Phase Details
 
@@ -32,15 +32,14 @@ Plans:
 - [x] 01-01-PLAN.md — Create workflow YAML and Python agent stub
 - [x] 01-02-PLAN.md — Write README setup docs and verify end-to-end in live GitHub
 
-### Phase 2: Claude Code Action Integration
-**Goal**: OAuth token wired, action fires on owner issue, PR opens with HTML edits on `agent/issue-{N}` branch
+### Phase 2: Cleanup + CLAUDE.md
+**Goal**: GitHub Actions workflow removed, CLAUDE.md comprehensive enough to make any portfolio change without clarifying questions
 **Depends on**: Phase 1
-**Requirements**: EDIT-01, SAFE-02, PR-01, PR-02
+**Requirements**: CLAUDE-01, CLEAN-01
 **Success Criteria** (what must be TRUE):
-  1. Filing an owner issue triggers the workflow; non-owner issue does not
-  2. The opened PR targets `main`, branch is `agent/issue-{N}`, diff contains only HTML/CSS files
-  3. PR body includes `Closes #N`
-  4. No binary files appear in the PR diff
+  1. `.github/workflows/portfolio-agent.yml` deleted
+  2. CLAUDE.md documents project card HTML structure, CSS design system, project page format, and what files to never touch
+  3. housing-ml project linked from main page
 **Plans**: TBD
 
 ## Progress
@@ -51,4 +50,4 @@ Phases execute in numeric order: 1 → 2
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Workflow Scaffold | 2/2 | Complete | 2026-03-12 |
-| 2. Claude Code Action Integration | 0/TBD | Not started | - |
+| 2. Cleanup + CLAUDE.md | 0/TBD | Not started | - |
