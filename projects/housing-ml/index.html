@@ -1,1 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OC Housing Price ML — Michael Early</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f11;
+      --surface: #16161a;
+      --card: #1c1c22;
+      --border: #2a2a35;
+      --accent: #e8c16b;
+      --accent2: #6bc4e8;
+      --accent3: #e86b8c;
+      --text: #e8e6df;
+      --muted: #8a8880;
+      --sig: #6be8a0;
+      --insig: #e8816b;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-serif);
+      font-size: 17px;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0f0f11 0%, #14141c 50%, #0f1219 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 48px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(232,193,107,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+    .pill span { color: var(--text); }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 48px;
+    }
+
+    /* ── SECTIONS ── */
+    .section { margin-bottom: 72px; }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    h2 .section-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      font-weight: 400;
+    }
+
+    p { margin-bottom: 16px; color: #ccc9be; }
+    p:last-child { margin-bottom: 0; }
+
+    strong { color: var(--text); font-weight: 600; }
+    em { color: var(--accent); font-style: italic; }
+
+    /* ── CODE ── */
+    pre {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 20px 24px;
+      border-radius: 2px;
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+    code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: #b8d4f0;
+      line-height: 1.6;
+    }
+    p code {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 2px;
+      font-size: 13px;
+      color: var(--accent2);
+    }
+
+    /* ── VISUAL CARDS ── */
+    .visual-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 28px 24px 20px;
+      margin: 28px 0;
+    }
+    .visual-card .chart-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* ── RESULTS TABLE ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 24px 0;
+    }
+    thead tr {
+      background: var(--surface);
+    }
+    th {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: #ccc9be;
+    }
+    tr:last-child td { border-bottom: none; }
+    .sig-yes { color: var(--sig); font-weight: 600; }
+    .sig-no  { color: var(--insig); }
+    .coef-pos { color: var(--sig); font-weight: 600; font-family: var(--font-mono); font-size: 13px; }
+    .coef-zero { color: var(--muted); font-family: var(--font-mono); font-size: 13px; }
+
+    /* ── CALLOUT STATS ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .stat-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 2px;
+      text-align: center;
+    }
+    .stat-box .stat-val {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-box .stat-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── PIPELINE DIAGRAM ── */
+    .pipeline-svg { width: 100%; height: auto; display: block; }
+
+    /* ── TAKEAWAYS ── */
+    .takeaway-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .takeaway-list li {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      color: #ccc9be;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    .takeaway-list li:last-child { border-bottom: none; }
+    .takeaway-list li::before {
+      content: '→';
+      font-family: var(--font-mono);
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .hero { padding: 48px 24px 40px; }
+      .container { padding: 48px 24px; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .footer { flex-direction: column; gap: 10px; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-eyebrow">ECON 542 — Applied Econometrics · Fall 2025</div>
+  <h1>Predicting Housing Prices with<br><em>Machine Learning</em> & NLP-Extracted Features</h1>
+  <div class="meta-pills">
+    <div class="pill">Author: <span>Michael Early</span></div>
+    <div class="pill">Data: <span>Redfin · Costa Mesa, CA</span></div>
+    <div class="pill">n = <span>13,346 sales</span></div>
+    <div class="pill">Stack: <span>Python · GPT-4.1 · OLS · Random Forest</span></div>
+    <div class="pill">Window: <span>5 Years</span></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── 1. THE QUESTION ── -->
+  <div class="section">
+    <h2><span class="section-num">01 ·</span> The Question</h2>
+    <p>Standard hedonic price models explain housing values well using structural attributes — square footage, bedrooms, bathrooms, lot size, year built, and location. The theoretical foundation goes back to Rosen (1974): observed prices reveal households' implicit valuations of bundled housing characteristics, and OLS on log-prices recovers those marginal willingness-to-pay estimates cleanly.</p>
+    <p>But real estate listings contain a second layer of information that never makes it into a Redfin CSV: <strong>qualitative language</strong>. Phrases like <em>"recently renovated,"</em> <em>"near the beach,"</em> or <em>"top-rated schools"</em> signal value that doesn't show up in any structured column. Historically, extracting that signal at scale required manual coding — expensive, slow, and not reproducible. Large language models change that calculus entirely.</p>
+    <p>This project asks: <strong>how much additional predictive power can AI-extracted qualitative features from listing descriptions add to a standard housing price model?</strong> The approach combines a traditional hedonic framework with a GPT-4.1-powered NLP pipeline, then benchmarks OLS and Random Forest models with and without the extracted features.</p>
+  </div>
+
+  <!-- ── 2. PIPELINE DIAGRAM ── -->
+  <div class="section">
+    <h2><span class="section-num">02 ·</span> Data & Scraping Pipeline</h2>
+    <p>The structured dataset consists of <strong>13,346 single-family residential sales</strong> in Costa Mesa, CA over five years, sourced from Redfin's internal GIS API. The API returns price, beds, baths, square footage, lot size, year built, and listing URL — but not the description text. Descriptions required a separate async scraping pass.</p>
+
+    <!-- Pipeline SVG -->
+    <div class="visual-card">
+      <div class="chart-title">Fig 1 — Data & Feature Extraction Pipeline</div>
+      <svg viewBox="0 0 780 180" xmlns="http://www.w3.org/2000/svg" class="pipeline-svg">
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#4a4a5a"/>
+          </marker>
+        </defs>
+
+        <!-- boxes -->
+        <!-- box 1 -->
+        <rect x="10" y="50" width="120" height="80" rx="3" fill="#1c1c22" stroke="#2a2a35" stroke-width="1"/>
+        <text x="70" y="82" text-anchor="middle" fill="#e8c16b" font-family="IBM Plex Mono" font-size="9" letter-spacing="1">REDFIN</text>
+        <text x="70" y="96" text-anchor="middle" fill="#e8c16b" font-family="IBM Plex Mono" font-size="9" letter-spacing="1">GIS API</text>
+        <text x="70" y="114" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="8">13,346 listings</text>
+
+        <!-- arrow 1 -->
+        <line x1="131" y1="90" x2="158" y2="90" stroke="#4a4a5a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- box 2 -->
+        <rect x="160" y="50" width="130" height="80" rx="3" fill="#1c1c22" stroke="#2a2a35" stroke-width="1"/>
+        <text x="225" y="80" text-anchor="middle" fill="#6bc4e8" font-family="IBM Plex Mono" font-size="9" letter-spacing="1">ASYNC SCRAPER</text>
+        <text x="225" y="96" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="8">aiohttp · 2 req/s</text>
+        <text x="225" y="112" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="8">BeautifulSoup</text>
+
+        <!-- arrow 2 -->
+        <line x1="291" y1="90" x2="318" y2="90" stroke="#4a4a5a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- box 3 -->
+        <rect x="320" y="50" width="130" height="80" rx="3" fill="#1c1c22" stroke="#e8c16b" stroke-width="1" stroke-dasharray="4 2"/>
+        <text x="385" y="80" text-anchor="middle" fill="#e8c16b" font-family="IBM Plex Mono" font-size="9" letter-spacing="1">GPT-4.1</text>
+        <text x="385" y="96" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="8">Junk filter +</text>
+        <text x="385" y="110" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="8">Feature extract</text>
+
+        <!-- arrow 3 -->
+        <line x1="451" y1="90" x2="478" y2="90" stroke="#4a4a5a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- box 4 -->
+        <rect x="480" y="50" width="130" height="80" rx="3" fill="#1c1c22" stroke="#2a2a35" stroke-width="1"/>
+        <text x="545" y="80" text-anchor="middle" fill="#6be8a0" font-family="IBM Plex Mono" font-size="9" letter-spacing="1">BINARY FLAGS</text>
+        <text x="545" y="96" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="8">renovated · schools</text>
+        <text x="545" y="110" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="8">beach · private</text>
+
+        <!-- arrow 4 -->
+        <line x1="611" y1="90" x2="638" y2="90" stroke="#4a4a5a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- box 5 -->
+        <rect x="640" y="50" width="130" height="80" rx="3" fill="#1c1c22" stroke="#2a2a35" stroke-width="1"/>
+        <text x="705" y="80" text-anchor="middle" fill="#e86b8c" font-family="IBM Plex Mono" font-size="9" letter-spacing="1">MODELS</text>
+        <text x="705" y="96" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="8">OLS · Random</text>
+        <text x="705" y="110" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="8">Forest</text>
+
+        <!-- label: LangChain embedding note -->
+        <text x="385" y="148" text-anchor="middle" fill="#4a4a5a" font-family="IBM Plex Mono" font-size="8">LangChain · text-embedding-3-large vector store for retrieval</text>
+      </svg>
+    </div>
+
+    <p>Each listing URL was fetched with rate-limited async HTTP (2 req/sec) and retried with exponential backoff. HTML was parsed via BeautifulSoup targeting Redfin's <code>data-rf-test-id="abp-description"</code> block. Junk listings — boilerplate agent-speak with no substantive content — were flagged and dropped before extraction ran. Noisy descriptions left uncleaned would have attenuated NLP coefficients toward zero.</p>
+
+<pre><code>rate_limiter = AsyncLimiter(max_rate=2, time_period=1)
+
+async def fetch_html(session, url, max_retries=3):
+    async with rate_limiter:
+        for attempt in range(max_retries):
+            try:
+                async with session.get(url, headers=HEADERS) as r:
+                    return await r.text()
+            except Exception:
+                await asyncio.sleep(2 ** attempt)</code></pre>
+  </div>
+
+  <!-- ── 3. FEATURE ENGINEERING ── -->
+  <div class="section">
+    <h2><span class="section-num">03 ·</span> GPT-4.1 as a Feature Extractor</h2>
+    <p>Cleaned descriptions were passed through <strong>GPT-4.1 via LangChain</strong> to extract four binary qualitative indicators. This treats the LLM as a zero-shot classifier with natural language supervision — a meaningful upgrade over regex keyword matching that fails on semantic variation.</p>
+
+    <!-- Feature extraction table -->
+    <div class="visual-card">
+      <div class="chart-title">Fig 2 — Extracted Binary Features</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Signal</th>
+            <th>Example Trigger Phrases</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code style="color:#6be8a0">renovated</code></td>
+            <td>Recent upgrades</td>
+            <td style="color:#8a8880;font-size:13px">"newly remodeled," "updated kitchen," "fresh renovation"</td>
+          </tr>
+          <tr>
+            <td><code style="color:#6bc4e8">good_schools</code></td>
+            <td>School quality cited</td>
+            <td style="color:#8a8880;font-size:13px">"top-rated schools," "award-winning district," "walking to school"</td>
+          </tr>
+          <tr>
+            <td><code style="color:#e8c16b">near_beach</code></td>
+            <td>Beach proximity</td>
+            <td style="color:#8a8880;font-size:13px">"steps to the beach," "ocean views," "coastal living"</td>
+          </tr>
+          <tr>
+            <td><code style="color:#e86b8c">private</code></td>
+            <td>Privacy / seclusion</td>
+            <td style="color:#8a8880;font-size:13px">"private retreat," "secluded lot," "gated community"</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 4. METHODOLOGY ── -->
+  <div class="section">
+    <h2><span class="section-num">04 ·</span> Methodology</h2>
+    <p>Before modeling, standard feature engineering was applied. Log transformations were applied to price and coastal distance. Age was computed as <code>2026 − year_built</code> and clipped at zero. Quadratic terms for beds, baths, and square footage captured nonlinear returns.</p>
+
+<pre><code>df["log_price"] = np.log(df.price)
+df["age"]       = (2026 - df.year_built).clip(lower=0)
+df["beds2"]     = df.beds  ** 2
+df["baths2"]    = df.baths ** 2
+df["sqft2"]     = df.sqft  ** 2</code></pre>
+
+    <p><strong>OLS Hedonic Regression:</strong> The primary specification is a semi-log hedonic model with neighborhood fixed effects. Neighborhood is defined as a lat/lon grid cell (~0.7-mile resolution) — no shapefiles required, and it absorbs granular location heterogeneity cleanly. Standard errors are heteroskedasticity-robust (White). The four NLP-extracted indicators are added in a second specification to measure their marginal contribution.</p>
+
+<pre><code>log(price) ~ sqft + beds + baths + age
+           + log(dist_coast) + C(neighborhood)</code></pre>
+
+    <p><strong>Random Forest:</strong> Two models were trained on an 80/20 train-test split — numeric-only features vs. numeric + NLP-extracted. Comparing test R² and RMSE across specifications isolates the predictive value of the text signals independent of OLS linearity assumptions.</p>
+  </div>
+
+  <!-- ── 5. RESULTS ── -->
+  <div class="section">
+    <h2><span class="section-num">05 ·</span> Results</h2>
+
+    <!-- Stat callouts -->
+    <div class="stat-row">
+      <div class="stat-box">
+        <span class="stat-val">0.898</span>
+        <span class="stat-label">OLS R²</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-val">0.887</span>
+        <span class="stat-label">Adj. R²</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-val">13,346</span>
+        <span class="stat-label">Observations</span>
+      </div>
+    </div>
+
+    <p>The baseline OLS model achieves R² = 0.898 — structural characteristics and neighborhood fixed effects explain nearly 90% of variation in log-prices. This is consistent with well-identified hedonic models in dense urban markets where location controls are rich.</p>
+
+    <!-- NLP Coefficient Bar Chart -->
+    <div class="visual-card">
+      <div class="chart-title">Fig 3 — NLP Feature Price Premiums (OLS Semi-Elasticities)</div>
+      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <!-- Y-axis label -->
+        <text x="12" y="110" fill="#8a8880" font-family="IBM Plex Mono" font-size="9" transform="rotate(-90,12,110)" text-anchor="middle">% Price Premium</text>
+
+        <!-- Axis line -->
+        <line x1="55" y1="20" x2="55" y2="170" stroke="#2a2a35" stroke-width="1"/>
+        <line x1="55" y1="170" x2="680" y2="170" stroke="#2a2a35" stroke-width="1"/>
+
+        <!-- Y gridlines & labels -->
+        <!-- 0% at y=170, 5% at y~90, 2.5% at ~130 -->
+        <line x1="55" y1="90" x2="680" y2="90" stroke="#2a2a35" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <line x1="55" y1="130" x2="680" y2="130" stroke="#2a2a35" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <text x="48" y="174" fill="#8a8880" font-family="IBM Plex Mono" font-size="9" text-anchor="end">0%</text>
+        <text x="48" y="134" fill="#8a8880" font-family="IBM Plex Mono" font-size="9" text-anchor="end">2.5%</text>
+        <text x="48" y="94" fill="#8a8880" font-family="IBM Plex Mono" font-size="9" text-anchor="end">5%</text>
+
+        <!-- renovated bar: ~5% premium → height = 80 -->
+        <rect x="100" y="90" width="100" height="80" rx="2" fill="#6be8a0" opacity="0.85"/>
+        <text x="150" y="84" text-anchor="middle" fill="#6be8a0" font-family="IBM Plex Mono" font-size="10" font-weight="600">+5.1%</text>
+        <text x="150" y="186" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="9">renovated</text>
+        <text x="150" y="197" text-anchor="middle" fill="#6be8a0" font-family="IBM Plex Mono" font-size="8">p &lt; 0.01 ✓</text>
+
+        <!-- good_schools bar: ~4.5% → height = 72 -->
+        <rect x="240" y="98" width="100" height="72" rx="2" fill="#6bc4e8" opacity="0.85"/>
+        <text x="290" y="92" text-anchor="middle" fill="#6bc4e8" font-family="IBM Plex Mono" font-size="10" font-weight="600">+4.5%</text>
+        <text x="290" y="186" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="9">good_schools</text>
+        <text x="290" y="197" text-anchor="middle" fill="#6bc4e8" font-family="IBM Plex Mono" font-size="8">p &lt; 0.01 ✓</text>
+
+        <!-- near_beach bar: ~0% -->
+        <rect x="380" y="166" width="100" height="4" rx="2" fill="#4a4a5a"/>
+        <text x="430" y="158" text-anchor="middle" fill="#4a4a5a" font-family="IBM Plex Mono" font-size="10">≈ 0%</text>
+        <text x="430" y="186" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="9">near_beach</text>
+        <text x="430" y="197" text-anchor="middle" fill="#e86b8c" font-family="IBM Plex Mono" font-size="8">not sig ✗</text>
+
+        <!-- private bar: ~0% -->
+        <rect x="520" y="166" width="100" height="4" rx="2" fill="#4a4a5a"/>
+        <text x="570" y="158" text-anchor="middle" fill="#4a4a5a" font-family="IBM Plex Mono" font-size="10">≈ 0%</text>
+        <text x="570" y="186" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="9">private</text>
+        <text x="570" y="197" text-anchor="middle" fill="#e86b8c" font-family="IBM Plex Mono" font-size="8">not sig ✗</text>
+      </svg>
+    </div>
+
+    <!-- OLS coefficient table -->
+    <div class="visual-card">
+      <div class="chart-title">Fig 4 — OLS NLP Coefficient Summary</div>
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Coefficient</th><th>Semi-Elasticity</th><th>p-value</th><th>Significant</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code style="color:#6be8a0">renovated</code></td>
+            <td class="coef-pos">+0.050</td>
+            <td>~+5.1% premium</td>
+            <td class="sig-yes">&lt; 0.01</td>
+            <td class="sig-yes">✓ Yes</td>
+          </tr>
+          <tr>
+            <td><code style="color:#6bc4e8">good_schools</code></td>
+            <td class="coef-pos">+0.044</td>
+            <td>~+4–5% premium</td>
+            <td class="sig-yes">&lt; 0.01</td>
+            <td class="sig-yes">✓ Yes</td>
+          </tr>
+          <tr>
+            <td><code style="color:#e8c16b">near_beach</code></td>
+            <td class="coef-zero">~0.000</td>
+            <td>Not significant</td>
+            <td class="sig-no">&gt; 0.10</td>
+            <td class="sig-no">✗ No</td>
+          </tr>
+          <tr>
+            <td><code style="color:#e86b8c">private</code></td>
+            <td class="coef-zero">~0.000</td>
+            <td>Not significant</td>
+            <td class="sig-no">&gt; 0.10</td>
+            <td class="sig-no">✗ No</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Model comparison visual -->
+    <div class="visual-card">
+      <div class="chart-title">Fig 5 — Model Comparison: R² with vs. without NLP Features</div>
+      <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <!-- legend -->
+        <rect x="430" y="18" width="10" height="10" fill="#e86b8c" opacity="0.8" rx="1"/>
+        <text x="445" y="27" fill="#8a8880" font-family="IBM Plex Mono" font-size="9">Numeric only</text>
+        <rect x="545" y="18" width="10" height="10" fill="#6be8a0" opacity="0.8" rx="1"/>
+        <text x="560" y="27" fill="#8a8880" font-family="IBM Plex Mono" font-size="9">+ NLP features</text>
+
+        <!-- axes -->
+        <line x1="70" y1="20" x2="70" y2="155" stroke="#2a2a35" stroke-width="1"/>
+        <line x1="70" y1="155" x2="680" y2="155" stroke="#2a2a35" stroke-width="1"/>
+
+        <!-- gridlines: 0, 0.5, 0.9 -->
+        <!-- max bar height = 120 at R²=1.0; R²=0.9 → 108, R²=0.87→104.4, R²=0.91→109.2 -->
+        <line x1="70" y1="35" x2="680" y2="35" stroke="#2a2a35" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <line x1="70" y1="95" x2="680" y2="95" stroke="#2a2a35" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <text x="62" y="159" fill="#8a8880" font-family="IBM Plex Mono" font-size="9" text-anchor="end">0.0</text>
+        <text x="62" y="99" fill="#8a8880" font-family="IBM Plex Mono" font-size="9" text-anchor="end">0.5</text>
+        <text x="62" y="39" fill="#8a8880" font-family="IBM Plex Mono" font-size="9" text-anchor="end">1.0</text>
+
+        <!-- OLS numeric-only: R²≈0.875 → height = 0.875*120 = 105 → y = 155-105=50 -->
+        <rect x="120" y="50" width="80" height="105" rx="2" fill="#e86b8c" opacity="0.75"/>
+        <text x="160" y="44" text-anchor="middle" fill="#e86b8c" font-family="IBM Plex Mono" font-size="9" font-weight="600">0.875</text>
+
+        <!-- OLS + NLP: R²=0.898 → height = 107.8 → y=47.2 -->
+        <rect x="210" y="47" width="80" height="108" rx="2" fill="#6be8a0" opacity="0.75"/>
+        <text x="250" y="41" text-anchor="middle" fill="#6be8a0" font-family="IBM Plex Mono" font-size="9" font-weight="600">0.898</text>
+
+        <!-- x labels -->
+        <text x="205" y="172" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="9">OLS</text>
+
+        <!-- RF numeric-only: R²≈0.82 → height=98.4 → y=56.6 -->
+        <rect x="390" y="57" width="80" height="98" rx="2" fill="#e86b8c" opacity="0.75"/>
+        <text x="430" y="51" text-anchor="middle" fill="#e86b8c" font-family="IBM Plex Mono" font-size="9" font-weight="600">0.820</text>
+
+        <!-- RF + NLP: R²≈0.845 → height=101.4 → y=53.6 -->
+        <rect x="480" y="54" width="80" height="101" rx="2" fill="#6be8a0" opacity="0.75"/>
+        <text x="520" y="48" text-anchor="middle" fill="#6be8a0" font-family="IBM Plex Mono" font-size="9" font-weight="600">0.845</text>
+
+        <text x="475" y="172" text-anchor="middle" fill="#8a8880" font-family="IBM Plex Mono" font-size="9">Random Forest</text>
+
+        <!-- Y axis label -->
+        <text x="14" y="90" fill="#8a8880" font-family="IBM Plex Mono" font-size="9" transform="rotate(-90,14,90)" text-anchor="middle">Test R²</text>
+      </svg>
+      <p style="font-size:12px;color:#4a4a5a;font-family:'IBM Plex Mono',monospace;margin-top:8px;">Note: RF values are approximate test-set estimates from 80/20 split. OLS R² is full-sample.</p>
+    </div>
+
+    <p><strong>Renovation</strong> carries a statistically significant ~5% price premium conditional on all structural controls. A remodeled 1970s home and an unremodeled 1970s home of identical square footage are not the same good, and buyers price that distinction. <strong>School quality</strong> is similarly significant at 4–5%, likely reflecting both direct school quality effects and higher-income buyer sorting that persists even after neighborhood fixed effects.</p>
+    <p><strong>Beach proximity</strong> is fully absorbed by the <code>log(dist_coast)</code> continuous control — once actual distance to the coast is in the model, a binary "near beach" flag adds nothing. <strong>Privacy language</strong> is insignificant throughout, suggesting it functions as marketing copy rather than a signal of genuine property differentiation.</p>
+  </div>
+
+  <!-- ── 6. TAKEAWAYS ── -->
+  <div class="section">
+    <h2><span class="section-num">06 ·</span> Takeaways & Future Directions</h2>
+    <ul class="takeaway-list">
+      <li>NLP-extracted features add <strong>real but modest predictive power</strong> — marginal R² gain is positive and statistically significant for two of four features across both model classes</li>
+      <li><strong>Renovation and school quality</strong> survive conditional on neighborhood fixed effects and all structural controls — the most economically meaningful qualitative signals in the data</li>
+      <li><strong>Geographic controls dominate</strong> — location remains the primary driver; text signals operate at the margin on the residuals</li>
+      <li><strong>OLS and Random Forest converge</strong>, lending cross-model robustness to the core finding independent of functional form assumptions</li>
+      <li><strong>Upstream data quality matters</strong> — junk classification before extraction meaningfully improves signal quality; noisy boilerplate descriptions attenuate NLP coefficients toward zero</li>
+      <li>Future extensions: continuous sentiment scores via embedding distance, full OC market expansion, BERT extractor benchmarking, listing photo integration via vision models</li>
+    </ul>
+  </div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <span>Michael Early · ECON 542 · CSUF MA Economics</span>
+  <span><a href="https://github.com/michael-early">GitHub →</a> &nbsp;·&nbsp; <a href="https://michael-early.github.io">Portfolio →</a></span>
+</div>
+
+</body>
+</html>
