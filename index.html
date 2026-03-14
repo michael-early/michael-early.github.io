@@ -8,23 +8,25 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --text: #0f172a;
-      --muted: #64748b;
-      --accent: #2563eb;
-      --accent-light: #eff6ff;
-      --border: #e2e8f0;
-      --bg: #ffffff;
-      --surface: #f8fafc;
+      --bg: #f5f0e8;
+      --surface: #f0ebe2;
+      --surface-hover: #ebe4d8;
+      --border: #ddd8ce;
+      --border-soft: #e8e2d8;
+      --text: #1c1917;
+      --muted: #78716c;
+      --subtle: #a09080;
+      --body: #57534e;
+      --accent: #1c1917;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      margin: 0;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
@@ -35,62 +37,58 @@
     .navbar {
       position: sticky;
       top: 0;
-      background: #fff;
-      border-top: 3px solid var(--accent);
+      background: var(--bg);
       border-bottom: 1px solid var(--border);
       z-index: 100;
       padding: 0 24px;
     }
 
     .nav-inner {
-      max-width: 1060px;
+      max-width: 860px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 52px;
+      height: 50px;
     }
 
     .nav-brand {
       font-weight: 700;
-      font-size: 0.97rem;
-      color: var(--text) !important;
+      font-size: 13px;
+      color: var(--text);
       text-decoration: none;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.3px;
     }
 
     .nav-brand:hover { text-decoration: none; }
 
     .nav-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 22px;
       align-items: center;
     }
 
     .nav-links a {
-      font-size: 0.85rem;
+      font-size: 12px;
       font-weight: 500;
       color: var(--muted);
       text-decoration: none;
       transition: color 0.15s;
     }
 
-    .nav-links a:hover {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
 
     .nav-resume {
-      background: var(--accent);
-      color: #fff !important;
-      padding: 0.3rem 0.85rem;
-      border-radius: 5px;
-      font-size: 0.82rem;
-      font-weight: 600 !important;
-      transition: background 0.15s;
+      background: var(--text);
+      color: var(--bg) !important;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      transition: opacity 0.15s;
     }
 
-    .nav-resume:hover { background: #1d4ed8 !important; }
+    .nav-resume:hover { opacity: 0.8; }
 
     .hamburger {
       display: none;
@@ -117,136 +115,168 @@
       .nav-links {
         display: none;
         position: absolute;
-        top: 55px;
+        top: 51px;
         left: 0;
         right: 0;
-        background: #fff;
+        background: var(--bg);
         border-bottom: 1px solid var(--border);
         flex-direction: column;
         align-items: flex-start;
         padding: 1rem 24px 1.25rem;
         gap: 0.85rem;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.04);
       }
       .nav-links.open { display: flex; }
     }
 
     /* ── LAYOUT ── */
     .container {
-      max-width: 1060px;
+      max-width: 860px;
       margin: 0 auto;
-      padding: 52px 24px 64px;
+      padding: 44px 24px 64px;
     }
 
     /* ── HERO ── */
     .hero {
       display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      margin-bottom: 3.5rem;
-      padding-bottom: 3rem;
+      gap: 22px;
+      align-items: flex-start;
+      margin-bottom: 52px;
+      padding-bottom: 44px;
       border-bottom: 1px solid var(--border);
     }
 
     .headshot {
-      width: 110px;
-      height: 110px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
-      border: 3px solid #fff;
-      box-shadow: 0 0 0 3px var(--border), 0 4px 16px rgba(0,0,0,0.08);
+      border: 2px solid var(--border);
     }
 
-    h1 {
-      font-size: 2.25rem;
-      margin: 0 0 0.2rem;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-subtitle {
+    .hero-name {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
       color: var(--text);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin: 0 0 0.4rem;
+      margin-bottom: 4px;
     }
 
-    .hero-tagline {
+    .hero-role {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
       color: var(--muted);
-      font-size: 0.93rem;
-      margin: 0;
+      margin-bottom: 12px;
     }
+
+    .hero-bio {
+      font-size: 13px;
+      color: var(--body);
+      line-height: 1.75;
+      margin-bottom: 16px;
+      max-width: 500px;
+    }
+
+    .pinned-card {
+      background: #eee8de;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--text);
+      border-radius: 5px;
+      padding: 11px 14px;
+      margin-bottom: 16px;
+      max-width: 460px;
+    }
+
+    .pinned-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .pinned-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .pinned-finding {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--text);
+      color: var(--bg);
+      padding: 6px 16px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .btn-primary:hover { opacity: 0.8; text-decoration: none; }
+
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid #c8c2b8;
+      color: var(--muted);
+      padding: 6px 16px;
+      border-radius: 5px;
+      font-size: 12px;
+      text-decoration: none;
+      transition: border-color 0.15s;
+    }
+
+    .btn-secondary:hover { border-color: var(--muted); text-decoration: none; }
 
     @media (max-width: 500px) {
-      .hero { flex-direction: column; text-align: center; gap: 1.25rem; }
+      .hero { flex-direction: column; gap: 16px; }
+      .headshot { width: 88px; height: 88px; }
     }
 
     /* ── SECTIONS ── */
-    section { margin-bottom: 3rem; }
+    section { margin-bottom: 44px; }
 
     h2 {
-      font-size: 0.72rem;
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 1.3px;
       text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 1.25rem;
-      padding-bottom: 0.5rem;
+      color: var(--subtle);
+      margin-bottom: 18px;
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
     }
 
-    .section-intro {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin: -0.75rem 0 1.25rem;
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 13px;
+      color: var(--body);
+      line-height: 1.8;
     }
 
-    p { margin: 0 0 0.75rem; }
-
-    /* ── PROJECTS GRID ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-    }
-
-    @media (max-width: 580px) {
-      .projects-grid { grid-template-columns: 1fr; }
-    }
-
-    .project {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      border-radius: 8px;
-      padding: 1.1rem 1.2rem;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .project:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.1);
-    }
-
-    .project-title {
-      font-weight: 600;
-      font-size: 0.97rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .project-desc {
-      color: var(--muted);
-      font-size: 0.87rem;
-      line-height: 1.5;
-    }
+    .about-text + .about-text { margin-top: 10px; }
 
     /* ── EXPERIENCE ── */
     .exp {
-      margin-bottom: 1.75rem;
-      padding-bottom: 1.75rem;
-      border-bottom: 1px solid var(--border);
+      margin-bottom: 22px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border-soft);
     }
 
     .exp:last-child {
@@ -260,44 +290,103 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 1rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 7px;
     }
 
     .exp-title {
+      font-size: 13px;
       font-weight: 600;
-      font-size: 0.97rem;
+      color: var(--text);
     }
 
     .exp-company {
+      font-size: 11px;
       color: var(--muted);
-      font-size: 0.88rem;
-      margin-top: 0.1rem;
+      margin-top: 2px;
     }
 
     .exp-date {
-      color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 10px;
+      color: var(--subtle);
       white-space: nowrap;
       flex-shrink: 0;
     }
 
     .exp-bullets {
-      margin: 0.35rem 0 0 1.1rem;
+      margin: 7px 0 0 16px;
       padding: 0;
     }
 
     .exp-bullets li {
-      font-size: 0.91rem;
-      color: #334155;
-      margin-bottom: 0.25rem;
+      font-size: 12px;
+      color: var(--body);
+      margin-bottom: 5px;
+      line-height: 1.65;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      overflow: hidden;
+    }
+
+    .project-row {
+      background: var(--surface);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .project-row:last-child { border-bottom: none; }
+    .project-row:hover { background: var(--surface-hover); }
+
+    .project-row-left { flex: 1; min-width: 0; }
+
+    .project-row-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .project-row-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .project-row-title a:hover { text-decoration: underline; }
+
+    .project-row-desc {
+      font-size: 11px;
+      color: var(--muted);
       line-height: 1.55;
+    }
+
+    .project-badge {
+      flex-shrink: 0;
+      font-size: 9px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+      background: #eee8de;
+      color: var(--body);
+      border: 1px solid var(--border);
+      letter-spacing: 0.3px;
     }
 
     /* ── SKILLS ── */
     .skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem 2rem;
+      gap: 22px 32px;
     }
 
     @media (max-width: 500px) {
@@ -305,68 +394,57 @@
     }
 
     .skill-label {
-      font-size: 0.72rem;
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
+      color: var(--subtle);
+      margin-bottom: 8px;
     }
 
     .skill-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.35rem;
+      gap: 5px;
     }
 
     .skill-tag {
-      background: var(--accent-light);
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
-      border-radius: 4px;
-      padding: 0.2rem 0.6rem;
-      font-size: 0.8rem;
+      background: #eee8de;
+      border: 1px solid var(--border);
+      color: var(--body);
+      border-radius: 3px;
+      padding: 3px 8px;
+      font-size: 10px;
       font-weight: 500;
     }
 
-    /* ── LINKS ── */
-    a {
-      color: var(--accent);
-      text-decoration: none;
+    /* ── CONTACT ── */
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-link {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .contact-link a {
+      color: var(--text);
       font-weight: 500;
-    }
-
-    a:hover { text-decoration: underline; }
-
-    .contact p {
-      margin: 0.35rem 0;
-      font-size: 0.95rem;
-    }
-
-    .resume-cta {
-      display: inline-block;
-      padding: 0.6rem 1.4rem;
-      background: var(--accent);
-      color: #fff !important;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.01em;
-      transition: background 0.15s ease;
-    }
-
-    .resume-cta:hover {
-      background: #1d4ed8;
       text-decoration: none;
     }
+
+    .contact-link a:hover { text-decoration: underline; }
 
     /* ── FOOTER ── */
     footer {
-      margin-top: 4rem;
-      padding-top: 1.5rem;
+      margin-top: 40px;
+      padding-top: 18px;
       border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 10px;
+      color: #b0a898;
     }
   </style>
 </head>
@@ -393,28 +471,29 @@
   <div class="container">
 
     <header class="hero">
-      <img src="headshot.jpeg" alt="Michael Early headshot" class="headshot" />
+      <img src="headshot.jpeg" alt="Michael Early" class="headshot" />
       <div>
-        <h1>Michael Early</h1>
-        <p class="hero-subtitle">MA Economics · Data Scientist · Quantitative Economist</p>
-        <p class="hero-tagline">
-          I use econometrics and data science to answer hard empirical questions, from causal inference to statistical modeling and ML.
+        <div class="hero-name">Michael Early</div>
+        <div class="hero-role">MA Economics · Data Scientist</div>
+        <p class="hero-bio">
+          MA Economics at Cal State Fullerton. I work mostly in causal inference and applied econometrics — labor markets, policy, and how to get a clean estimate when you can't run an experiment. Also do ML when the question calls for it. Currently building LLM tools at First American.
         </p>
+        <div class="pinned-card">
+          <div class="pinned-label">Thesis · In progress</div>
+          <div class="pinned-title">AB 1228 — Fast-Food Minimum Wage Effects on Youth Employment</div>
+          <div class="pinned-finding">DiD + Triple-Diff on CPS panel data — no significant disemployment at 90% CI</div>
+        </div>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn-primary">View projects</a>
+          <a href="resume.pdf" class="btn-secondary" target="_blank" rel="noopener">Resume ↓</a>
+        </div>
       </div>
     </header>
 
     <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I'm an MA Economics candidate at Cal State Fullerton (GPA 3.93) specializing in quantitative methods, causal inference,
-        and applied data science. My work combines econometric identification strategies like difference-in-differences,
-        regression discontinuity, and instrumental variables with machine learning for prediction, classification, and NLP.
-      </p>
-      <p>
-        I'm currently a Graduate Intern in Enterprise Architecture at First American, building LLM-powered tools and
-        Power BI dashboards. My research interests are in labor markets, policy evaluation, and market structure,
-        and I care about taking projects from messy raw data all the way to results that are actually useful.
-      </p>
+      <h2>About</h2>
+      <p class="about-text">MA Economics candidate at CSUF (GPA 3.93). My focus is on identification — getting causal estimates out of observational data using DiD, RD, and IV. I also work in ML when prediction is the goal rather than identification.</p>
+      <p class="about-text">Before the grad internship at First American, I was a research assistant doing enrollment analysis for the economics department. I care about getting the numbers right and making the results actually readable.</p>
     </section>
 
     <section id="experience">
@@ -424,14 +503,16 @@
         <div class="exp-header">
           <div>
             <div class="exp-title">Graduate Intern — Enterprise Architecture</div>
-            <div class="exp-company">First American Strategic Tech Team · Santa Ana, CA</div>
+            <div class="exp-company">First American · Santa Ana, CA</div>
           </div>
           <div class="exp-date">Jun 2025 – Present</div>
         </div>
         <ul class="exp-bullets">
-          <li>Built and deployed a GPT-based tool to analyze business architecture, surface inefficiencies, and support structural redesign</li>
-          <li>Migrated a 10,000+ record database while preserving relational integrity, and built Power BI dashboards used across departments</li>
-          <li>Evaluated enterprise platforms for scalability and strategic fit, supporting cross-departmental coordination</li>
+          <li>Designed and deployed a production GPT-powered Q&amp;A assistant over 200+ enterprise architecture documents, eliminating manual lookup workflows and enabling self-serve query resolution for internal engineering teams — reducing analyst overhead by ~3–4 hours per week</li>
+          <li>Built an agentic dependency-mapping pipeline that auto-extracts and graphs application relationships during system onboarding, surfacing architectural risk and creating the first standardized process for capturing cross-enterprise dependencies where none previously existed</li>
+          <li>Engineered reproducible SQL reporting pipelines over large-scale operational datasets, replacing ad hoc queries with auditable scheduled reports — reducing manual reconciliation time and enabling end-to-end auditability for quarterly performance reviews</li>
+          <li>Automated analytical reporting workflows enforcing methodological consistency across data products, improving reliability and transparency for cross-team stakeholders and senior architecture leadership</li>
+          <li>Presented enterprise-wide business architecture standings to executive leadership as part of the internship program, translating complex system-level findings into structured briefings for senior decision-makers</li>
         </ul>
       </div>
 
@@ -444,9 +525,20 @@
           <div class="exp-date">Jan 2025 – Present</div>
         </div>
         <ul class="exp-bullets">
-          <li>Led weekly section of 40 students in undergraduate economics</li>
-          <li>Proctored and graded exams</li>
-          <li>Held weekly office hours to support student coursework</li>
+          <li>Supported undergraduates in Intermediate Business Microeconomics through weekly office hours (homework, exam prep, concept review); proctored and graded exams across a 200-student course</li>
+        </ul>
+      </div>
+
+      <div class="exp">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Teaching Assistant — Principles of Microeconomics</div>
+            <div class="exp-company">CSUF Economics Department · Fullerton, CA</div>
+          </div>
+          <div class="exp-date">Jan 2025 – Aug 2025</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Taught weekly discussion sections for 40 undergraduates in Principles of Microeconomics; graded assignments and exams for a 120-student course</li>
         </ul>
       </div>
 
@@ -459,59 +551,48 @@
           <div class="exp-date">Jan 2025 – May 2025</div>
         </div>
         <ul class="exp-bullets">
-          <li>Used Python and Excel to analyze institutional enrollment data and identify historical trends to support departmental planning</li>
+          <li>Gathered, cleaned, and performed preliminary analysis on institutional enrollment data sourced from IPEDS; structured outputs to support departmental reporting and planning</li>
         </ul>
       </div>
     </section>
 
     <section id="projects">
       <h2>Projects</h2>
-      <p class="section-intro">Causal inference, labor economics, market efficiency, and statistical forecasting. Full write-ups linked below.</p>
-
-      <div class="projects-grid">
-        <div class="project">
-          <div class="project-title">
-            <a href="projects/ab1228/">Fast-Food Minimum Wage (AB 1228)</a>
+      <div class="projects-list">
+        <div class="project-row">
+          <div class="project-row-left">
+            <div class="project-row-title"><a href="projects/ab1228/">Fast-Food Minimum Wage (AB 1228)</a></div>
+            <div class="project-row-desc">DiD + Triple-Diff on west-coast CPS panel — no significant disemployment in youth employment at 90% CI</div>
           </div>
-          <div class="project-desc">
-            Quasi-experimental DiD and Triple-Difference design to identify minimum wage effects on youth employment
-          </div>
+          <span class="project-badge">Causal Inference</span>
         </div>
-
-        <div class="project">
-          <div class="project-title">
-            <a href="projects/super-bowl-odds/">Forecasting Super Bowl Odds</a>
+        <div class="project-row">
+          <div class="project-row-left">
+            <div class="project-row-title"><a href="projects/nfl-qb-wage-discrimination/">NFL Quarterback Wage Discrimination</a></div>
+            <div class="project-row-desc">Blinder-Oaxaca decomposition — racial wage gap disappears after controlling for on-field performance</div>
           </div>
-          <div class="project-desc">
-            Time-series modeling and statistical tests of betting market efficiency using Super Bowl futures data
-          </div>
+          <span class="project-badge">Labor Economics</span>
         </div>
-
-        <div class="project">
-          <div class="project-title">
-            <a href="projects/nfl-qb-wage-discrimination/">NFL Quarterback Wage Discrimination</a>
+        <div class="project-row">
+          <div class="project-row-left">
+            <div class="project-row-title"><a href="projects/super-bowl-odds/">Forecasting Super Bowl Odds</a></div>
+            <div class="project-row-desc">Time-series models and efficiency tests on Super Bowl futures — market prices are informationally efficient</div>
           </div>
-          <div class="project-desc">
-            Regression-based wage decomposition testing whether race explains pay gaps conditional on performance in NFL contracts
-          </div>
+          <span class="project-badge">Sports Analytics</span>
         </div>
-
-        <div class="project">
-          <div class="project-title">
-            <a href="projects/nfl-sunday-ticket-bundling/">NFL Sunday Ticket Pricing Model</a>
+        <div class="project-row">
+          <div class="project-row-left">
+            <div class="project-row-title"><a href="projects/nfl-sunday-ticket-bundling/">NFL Sunday Ticket Pricing Model</a></div>
+            <div class="project-row-desc">IO model of monopoly bundling — optimal pricing under exclusive distribution in broadcasting markets</div>
           </div>
-          <div class="project-desc">
-            Quantitative IO model of monopoly bundling and optimal pricing applied to sports broadcasting markets
-          </div>
+          <span class="project-badge">Industrial Org</span>
         </div>
-
-        <div class="project">
-          <div class="project-title">
-            <a href="projects/housing-ml/">Housing Price Prediction</a>
+        <div class="project-row">
+          <div class="project-row-left">
+            <div class="project-row-title"><a href="projects/housing-ml/">Housing Price Prediction</a></div>
+            <div class="project-row-desc">Gradient boosting with feature engineering — ensemble methods outperform OLS on held-out test set</div>
           </div>
-          <div class="project-desc">
-            Machine learning model predicting housing prices using feature engineering and ensemble methods
-          </div>
+          <span class="project-badge">Machine Learning</span>
         </div>
       </div>
     </section>
@@ -536,7 +617,6 @@
             <span class="skill-tag">IV</span>
             <span class="skill-tag">RD</span>
             <span class="skill-tag">Panel methods</span>
-            <span class="skill-tag">Statsmodels</span>
             <span class="skill-tag">Causal inference</span>
           </div>
         </div>
@@ -545,38 +625,29 @@
           <div class="skill-tags">
             <span class="skill-tag">Scikit-learn</span>
             <span class="skill-tag">Hugging Face</span>
-            <span class="skill-tag">Transformers</span>
-            <span class="skill-tag">RoBERTa</span>
-            <span class="skill-tag">OpenAI API</span>
             <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">OpenAI API</span>
           </div>
         </div>
         <div>
-          <div class="skill-label">Data &amp; Visualization</div>
+          <div class="skill-label">Data &amp; Viz</div>
           <div class="skill-tags">
             <span class="skill-tag">Pandas</span>
             <span class="skill-tag">NumPy</span>
-            <span class="skill-tag">SciPy</span>
             <span class="skill-tag">Matplotlib</span>
-            <span class="skill-tag">Seaborn</span>
             <span class="skill-tag">Power BI</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section>
-      <h2>Resume</h2>
-      <p>
-        <a href="resume.pdf" class="resume-cta" target="_blank" rel="noopener">Download Resume (PDF)</a>
-      </p>
-    </section>
-
-    <section id="contact" class="contact">
+    <section id="contact">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:michaelarly.mpe@gmail.com">michaelarly.mpe@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://linkedin.com/in/michael-early-">linkedin.com/in/michael-early-</a></p>
-      <p>GitHub: <a href="https://github.com/michael-early">github.com/michael-early</a></p>
+      <div class="contact-links">
+        <div class="contact-link">Email — <a href="mailto:michaelarly.mpe@gmail.com">michaelarly.mpe@gmail.com</a></div>
+        <div class="contact-link">LinkedIn — <a href="https://linkedin.com/in/michael-early-">linkedin.com/in/michael-early-</a></div>
+        <div class="contact-link">GitHub — <a href="https://github.com/michael-early">github.com/michael-early</a></div>
+      </div>
     </section>
 
     <footer>
@@ -603,5 +674,6 @@
       });
     });
   </script>
+
 </body>
 </html>
