@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fast-Food Minimum Wage (AB 1228) — Michael Early</title>
+  <title>Sector-Specific Wage Floors and Young Adult Labor Market Outcomes — Michael Early</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -245,7 +245,7 @@
   <div class="container">
     <div class="content">
 
-      <h1>Fast-Food Minimum Wage (AB 1228)</h1>
+      <h1>Sector-Specific Wage Floors and Young Adult Labor Market Outcomes: Evidence from California's AB 1228</h1>
       <div class="tags">
         <span class="tag">Causal inference</span>
         <span class="tag">Quasi-experimental design</span>
@@ -254,30 +254,38 @@
 
       <h2>Problem</h2>
       <p>
-        California's AB 1228 raised the fast-food minimum wage to $20. I wanted to know what the
-        short-run effect on youth employment actually was, and whether we could separate that effect
-        from broader macroeconomic trends happening at the same time.
+        California's AB 1228 raised the fast-food minimum wage to $20 per hour in April 2024 &mdash;
+        the first statewide sector-specific wage floor in US history. I asked whether the
+        disemployment predicted by the standard competitive model shows up in the data, and more
+        importantly, whose employment changes under a binding sector-specific floor.
       </p>
 
       <h2>Method</h2>
       <p>
-        I built a microdata panel from CPS ORG extracts (IPUMS), restricting to ages 16–24
-        in California and neighboring control states. I estimated a difference-in-differences
-        model with two-way fixed effects and heteroskedasticity-robust standard errors,
-        verified the parallel pre-trends assumption, and ran a Triple-Difference specification
-        to separate fast-food sector effects from broader youth labor market shifts.
+        Monthly CPS Outgoing Rotation Group microdata (IPUMS), ages 16&ndash;24, January 2022
+        through September 2025. Primary estimator: two-way fixed effects across all 50 states with
+        state-clustered standard errors and full demographic controls. Triangulation via synthetic
+        control, long differences, a West-Coast DiD with pre-trend diagnostics and placebo tests, a
+        triple-difference against 25&ndash;35 year-olds, and QCEW establishment-level evidence
+        including a contiguous-county border design following Dube, Lester, and Reich. Mechanism
+        checks on log hourly wages, log weekly hours, and quantile wage regressions.
       </p>
 
       <h2>Result</h2>
       <p>
-        No statistically significant collapse in youth employment. Effects varied by metro area,
-        which points more to partial adjustment than a broad disemployment response. Full specification,
-        robustness checks, and pre-trends tests are in the working paper below.
+        The aggregate youth employment effect is small and not robust &mdash; the all-state TWFE
+        detects a modest decline that fails pre-trend diagnostics, and the synthetic control
+        returns a near-zero null. Implied employment elasticity is +0.028. Adjustment runs mostly
+        through the intensive margin: wages up 2.1%, hours down 3.8%, with wage gains concentrated
+        at and above the median. The paper's central contribution is compositional &mdash; workers
+        without a high school diploma see employment declines while more-educated youth see gains
+        &mdash; reframing the policy question from &ldquo;did aggregate employment fall?&rdquo; to
+        &ldquo;whose employment changed?&rdquo;
       </p>
 
       <p>
-        <a href="AB 1228 Working Paper.pdf" class="paper-link" target="_blank" rel="noopener">
-          Full paper (PDF)
+        <a href="Sector-Specific Wage Floors and Young Adult Labor Market Outcomes.pdf" class="paper-link" target="_blank" rel="noopener">
+          Full thesis (PDF)
         </a>
       </p>
 
