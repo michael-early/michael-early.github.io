@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Economic Growth ML — Michael Early</title>
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --ink: #17201d;
+      --muted: #667069;
+      --line: #ded8c8;
+      --panel: #ffffff;
+      --primary: #2f6f4e;
+      --accent: #b88732;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--primary); }
+
+    .hero {
+      background: linear-gradient(135deg, #173227 0%, #2f6f4e 100%);
+      color: #fff;
+      padding: 72px 32px 58px;
+    }
+
+    .hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      color: #d4e6d7;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1.04;
+      margin: 0;
+      max-width: 880px;
+    }
+
+    .hero p {
+      color: #edf6ef;
+      font-size: 18px;
+      max-width: 760px;
+      margin: 22px 0 0;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 42px 32px 72px;
+    }
+
+    .section { margin-top: 42px; }
+
+    h2 {
+      font-size: 24px;
+      margin: 0 0 14px;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 820px;
+      font-size: 17px;
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(23, 32, 29, 0.06);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--primary);
+      border-radius: 7px;
+      padding: 10px 14px;
+      color: var(--primary);
+      font-weight: 750;
+      text-decoration: none;
+      background: #fff;
+    }
+
+    .button.primary {
+      color: #fff;
+      background: var(--primary);
+    }
+
+    @media (max-width: 780px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Economics / Machine Learning</div>
+      <h1>Economic growth in developed and developing countries</h1>
+      <p>
+        Collaborative empirical project using macroeconomic indicators, HDI data,
+        clustering, and Random Forest regression to compare drivers of GDP growth.
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <h2>Project Overview</h2>
+      <p class="lead">
+        This study analyzes how macroeconomic factors relate to growth across development
+        levels. It combines unsupervised clustering with supervised regression to compare
+        feature importance between developed and developing country groups.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Methods</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Clustering</h3>
+          <p>K-means groups countries using development and macroeconomic indicators.</p>
+        </div>
+        <div class="card">
+          <h3>Regression</h3>
+          <p>Random Forest models estimate GDP growth relationships and rank predictors.</p>
+        </div>
+        <div class="card">
+          <h3>Economic interpretation</h3>
+          <p>Results compare investment, education, inflation, and development-level dynamics.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Files</h2>
+      <p class="lead">
+        The project folder includes the full notebook and written report from the original
+        portfolio repository.
+      </p>
+      <div class="actions">
+        <a class="button primary" href="README.md">Read Project README</a>
+        <a class="button" href="Economic%20Growth%20in%20Developed%20and%20Developing%20Countries.ipynb">Open Notebook</a>
+        <a class="button" href="Economic%20Growth%20in%20Developed%20and%20Developing%20Countries.docx">Download Report</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
