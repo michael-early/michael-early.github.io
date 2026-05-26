@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NFL Game Prediction System — Michael Early</title>
+  <style>
+    :root {
+      --bg: #f5f7f4;
+      --ink: #13242b;
+      --muted: #607179;
+      --line: #dbe2df;
+      --primary: #004c54;
+      --panel: #ffffff;
+      --accent: #34a0a4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--primary); }
+
+    .hero {
+      background: linear-gradient(135deg, #004c54 0%, #13242b 100%);
+      color: #fff;
+      padding: 72px 32px 58px;
+    }
+
+    .hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+      gap: 36px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      color: #bcd0d1;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.02;
+      margin: 0;
+      max-width: 820px;
+    }
+
+    .hero p {
+      color: #e3eeee;
+      font-size: 18px;
+      max-width: 720px;
+      margin: 22px 0 0;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.09);
+      padding: 18px;
+    }
+
+    .stat .label {
+      color: #bfd1d2;
+      font-size: 12px;
+      font-weight: 750;
+      text-transform: uppercase;
+    }
+
+    .stat .value {
+      display: block;
+      margin-top: 8px;
+      font-size: 28px;
+      font-weight: 850;
+      line-height: 1.05;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 42px 32px 72px;
+    }
+
+    .section {
+      margin-top: 42px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin: 0 0 14px;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 820px;
+      font-size: 17px;
+      margin: 0;
+    }
+
+    .screenshot {
+      margin-top: 26px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--panel);
+      box-shadow: 0 18px 44px rgba(19, 36, 43, 0.12);
+    }
+
+    .screenshot img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(19, 36, 43, 0.06);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      display: table;
+    }
+
+    th, td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      font-size: 15px;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--primary);
+      border-radius: 7px;
+      padding: 10px 14px;
+      color: var(--primary);
+      font-weight: 750;
+      text-decoration: none;
+      background: #fff;
+    }
+
+    .button.primary {
+      color: #fff;
+      background: var(--primary);
+    }
+
+    code {
+      background: #e9efed;
+      border: 1px solid #d4ddda;
+      border-radius: 4px;
+      padding: 2px 5px;
+    }
+
+    @media (max-width: 860px) {
+      .hero-inner,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">Machine Learning / Sports Analytics</div>
+        <h1>NFL game prediction and calibration system</h1>
+        <p>
+          End-to-end Python pipeline for NFL win probabilities, season-forward validation,
+          model comparison, calibration analysis, and a Streamlit dashboard featuring the
+          2026 Philadelphia Eagles forecast.
+        </p>
+      </div>
+      <div class="stat-grid" aria-label="Project highlights">
+        <div class="stat">
+          <span class="label">Forecast</span>
+          <span class="value">9-8</span>
+        </div>
+        <div class="stat">
+          <span class="label">Best Model</span>
+          <span class="value">Logistic</span>
+        </div>
+        <div class="stat">
+          <span class="label">Validation Games</span>
+          <span class="value">2,127</span>
+        </div>
+        <div class="stat">
+          <span class="label">Best Brier</span>
+          <span class="value">0.211</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <h2>Project Overview</h2>
+      <p class="lead">
+        This project treats game prediction as a probability-quality problem, not just a win/loss
+        classification task. It builds leak-free pregame features, compares transparent and ML
+        models, and reports calibration so predictions can be interpreted responsibly.
+      </p>
+      <div class="screenshot">
+        <img src="outputs/dashboard_screenshot.png" alt="Streamlit dashboard preview">
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Model Comparison</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Games</th>
+            <th>Brier</th>
+            <th>Log Loss</th>
+            <th>Accuracy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Logistic Regression</td>
+            <td>2,127</td>
+            <td>0.2111</td>
+            <td>0.6100</td>
+            <td>66.4%</td>
+          </tr>
+          <tr>
+            <td>Histogram Gradient Boosting</td>
+            <td>2,127</td>
+            <td>0.2210</td>
+            <td>0.6372</td>
+            <td>65.4%</td>
+          </tr>
+          <tr>
+            <td>Elo Baseline</td>
+            <td>2,127</td>
+            <td>0.2312</td>
+            <td>0.6629</td>
+            <td>63.6%</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>What It Demonstrates</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Leak-free features</h3>
+          <p>Rolling form, Elo state, rest, market context, and environment are computed from pregame information.</p>
+        </div>
+        <div class="card">
+          <h3>Time-aware validation</h3>
+          <p>Models train on earlier seasons and predict later seasons to match the real forecasting problem.</p>
+        </div>
+        <div class="card">
+          <h3>Dashboard communication</h3>
+          <p>The Streamlit app presents forecasts, model metrics, calibration, caveats, and reviewer-ready artifacts.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Repository Files</h2>
+      <p class="lead">
+        The full project code lives in this folder. Start with <code>README.md</code> for setup,
+        <code>MODEL_REPORT.md</code> for the modeling write-up, and <code>app/streamlit_app.py</code>
+        for the dashboard.
+      </p>
+      <div class="actions">
+        <a class="button primary" href="README.md">Read Project README</a>
+        <a class="button" href="MODEL_REPORT.md">Read Model Report</a>
+        <a class="button" href="outputs/eagles_2026_predictions.csv">View Prediction CSV</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
