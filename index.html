@@ -602,6 +602,14 @@
       text-transform: uppercase;
     }
 
+    @media (max-width: 560px) {
+      .project-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 9px;
+      }
+    }
+
     /* ── SKILLS ── */
     .skills-grid {
       display: grid;
@@ -907,9 +915,24 @@
     <section id="projects" class="section-grid">
       <div class="section-heading">
         <h2>Projects</h2>
+        <div class="section-meta">Research · ML · Sports analytics</div>
       </div>
       <div class="section-content">
         <div class="projects-list">
+          <div class="project-row">
+            <div class="project-row-left">
+              <div class="project-row-title"><a href="projects/eagles-ml-predictor/">NFL Game Prediction System</a></div>
+              <div class="project-row-desc">Reusable NFL prediction pipeline featuring Eagles 2026 forecasts, leakage-aware feature engineering, season-forward validation, calibration analysis, and a Streamlit dashboard</div>
+            </div>
+            <span class="project-badge">ML System</span>
+          </div>
+          <div class="project-row">
+            <div class="project-row-left">
+              <div class="project-row-title"><a href="projects/nba-playoffs-predictor/">NBA Playoff Series Predictor</a></div>
+              <div class="project-row-desc">Series-level playoff model using pre-series regular-season features, temporal validation, XGBoost, SHAP explainability, and generated bracket probability visuals</div>
+            </div>
+            <span class="project-badge">Sports ML</span>
+          </div>
           <div class="project-row">
             <div class="project-row-left">
               <div class="project-row-title"><a href="projects/ab1228/">Fast-Food Minimum Wage (AB 1228)</a></div>
@@ -944,6 +967,13 @@
               <div class="project-row-desc">Gradient boosting with feature engineering — ensemble methods outperform OLS on held-out test set</div>
             </div>
             <span class="project-badge">Machine Learning</span>
+          </div>
+          <div class="project-row">
+            <div class="project-row-left">
+              <div class="project-row-title"><a href="projects/economic-growth/">Economic Growth ML Study</a></div>
+              <div class="project-row-desc">Collaborative macroeconomic analysis using World Bank indicators, HDI data, k-means clustering, Random Forest regression, and feature-importance interpretation</div>
+            </div>
+            <span class="project-badge">Applied Econ</span>
           </div>
         </div>
       </div>
