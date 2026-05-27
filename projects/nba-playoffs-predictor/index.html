@@ -1,321 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NBA Playoff Predictor — Michael Early</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NBA Playoff Series Predictor — Michael Early</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #f7f8fb;
-      --ink: #111827;
-      --muted: #5f6b7a;
-      --line: #dfe5ee;
-      --panel: #ffffff;
-      --primary: #1d4ed8;
-      --accent: #f97316;
+      --bg: #f5f0e8;
+      --text: #1c1917;
+      --muted: #78716c;
+      --subtle: #a09080;
+      --body: #57534e;
+      --border: #ddd8ce;
+      --surface: #eee8de;
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
+      color: var(--text);
+      line-height: 1.7;
     }
 
-    a { color: var(--primary); }
-
-    .hero {
-      background: linear-gradient(135deg, #111827 0%, #1d4ed8 100%);
-      color: #fff;
-      padding: 72px 32px 56px;
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 24px;
     }
 
-    .hero-inner {
-      max-width: 1180px;
+    .nav-inner {
+      max-width: 860px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
-      gap: 34px;
-      align-items: end;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 50px;
     }
 
-    .eyebrow {
-      color: #bfdbfe;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
+    .nav-brand {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.3px;
     }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-resume {
+      background: var(--text);
+      color: var(--bg) !important;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+    }
+
+    @media (max-width: 680px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 51px;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 24px 1.25rem;
+        gap: 0.85rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      }
+      .nav-links.open { display: flex; }
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 44px 24px 64px;
+    }
+
+    .content { max-width: 700px; }
 
     h1 {
-      font-size: clamp(34px, 5vw, 62px);
-      line-height: 1.03;
-      margin: 0;
-      max-width: 820px;
+      font-size: 1.85rem;
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.22;
     }
 
-    .hero p {
-      color: #e5edff;
-      font-size: 18px;
-      max-width: 720px;
-      margin: 22px 0 0;
+    h2 {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin: 2.5rem 0 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    .stat-grid {
+    p, li {
+      color: var(--body);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    p { margin: 0 0 0.75rem; }
+    ul { margin: 0 0 0.75rem 1.25rem; padding: 0; }
+    li { margin-bottom: 0.3rem; }
+
+    a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.25rem 0 2rem;
+    }
+
+    .tag {
+      background: var(--surface);
+      color: var(--body);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .metric-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 1.25rem 0 1.75rem;
     }
 
-    .stat {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 18px;
+    .metric {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 5px;
+      padding: 12px;
     }
 
-    .stat .label {
-      color: #dbeafe;
-      font-size: 12px;
-      font-weight: 750;
+    .metric-value {
+      display: block;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .metric-label {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
     }
 
-    .stat .value {
-      display: block;
-      margin-top: 8px;
-      font-size: 28px;
-      font-weight: 850;
-      line-height: 1.05;
-    }
-
-    main {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 42px 32px 72px;
-    }
-
-    .section { margin-top: 42px; }
-
-    h2 {
-      font-size: 24px;
-      margin: 0 0 14px;
-    }
-
-    .lead {
-      color: var(--muted);
-      max-width: 820px;
-      font-size: 17px;
-      margin: 0;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    .card,
-    .visual {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      box-shadow: 0 8px 24px rgba(17, 24, 39, 0.07);
-    }
-
-    .card { padding: 20px; }
-
-    .card h3 {
-      margin: 0 0 8px;
-      font-size: 17px;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .visual {
-      margin-top: 24px;
+    .figure {
+      border: 1px solid var(--border);
+      border-radius: 6px;
       overflow: hidden;
+      margin: 1.1rem 0 1.5rem;
+      background: #fffaf3;
     }
 
-    .visual img {
+    .figure img {
       display: block;
       width: 100%;
       height: auto;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 18px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      display: table;
-    }
-
-    th, td {
-      padding: 13px 14px;
-      border-bottom: 1px solid var(--line);
-      text-align: left;
-      font-size: 15px;
-    }
-
-    th {
+    .figure-caption {
+      border-top: 1px solid var(--border);
       color: var(--muted);
-      font-size: 12px;
-      text-transform: uppercase;
+      font-size: 11px;
+      padding: 8px 10px;
     }
-
-    tr:last-child td { border-bottom: 0; }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
+      gap: 8px;
+      margin-top: 1rem;
     }
 
     .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--primary);
-      border-radius: 7px;
-      padding: 10px 14px;
-      color: var(--primary);
-      font-weight: 750;
+      display: inline-block;
+      border: 1px solid var(--border);
+      color: var(--body);
+      padding: 5px 13px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
       text-decoration: none;
-      background: #fff;
     }
 
     .button.primary {
-      color: #fff;
-      background: var(--primary);
+      background: var(--text);
+      border-color: var(--text);
+      color: var(--bg) !important;
+      font-weight: 600;
     }
 
-    @media (max-width: 860px) {
-      .hero-inner,
-      .grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 680px) {
+      .metric-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
+
 <body>
-  <section class="hero">
-    <div class="hero-inner">
-      <div>
-        <div class="eyebrow">Machine Learning / Basketball Analytics</div>
-        <h1>NBA playoff series outcome predictor</h1>
-        <p>
-          End-to-end series-level prediction pipeline using pre-series regular season data,
-          model comparison, XGBoost, and SHAP explainability.
-        </p>
-      </div>
-      <div class="stat-grid" aria-label="Project highlights">
-        <div class="stat">
-          <span class="label">Best Model</span>
-          <span class="value">XGBoost</span>
-        </div>
-        <div class="stat">
-          <span class="label">ROC-AUC</span>
-          <span class="value">0.683</span>
-        </div>
-        <div class="stat">
-          <span class="label">Data Scope</span>
-          <span class="value">135 series</span>
-        </div>
-        <div class="stat">
-          <span class="label">Stack</span>
-          <span class="value">Python</span>
-        </div>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../../" class="nav-brand">Michael Early</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="../../#about">About</a>
+        <a href="../../#experience">Experience</a>
+        <a href="../../#projects">Projects</a>
+        <a href="../../#skills">Skills</a>
+        <a href="../../#contact">Contact</a>
+        <a href="../../resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume ↓</a>
       </div>
     </div>
-  </section>
+  </nav>
 
-  <main>
-    <section class="section">
-      <h2>Project Overview</h2>
-      <p class="lead">
-        This project predicts NBA playoff series winners using regular season team quality,
-        efficiency, and playoff-history features. It compares logistic regression, random forest,
-        and XGBoost, then uses SHAP to explain the best model.
+  <div class="container">
+    <div class="content">
+      <h1>NBA Playoff Series Outcome Predictor</h1>
+      <div class="tags">
+        <span class="tag">Machine learning</span>
+        <span class="tag">Basketball analytics</span>
+        <span class="tag">Explainability</span>
+      </div>
+
+      <p>
+        A series-level NBA playoff prediction pipeline using pre-series regular-season data,
+        model comparison, XGBoost, and SHAP explainability. The project predicts series winners
+        rather than individual games to reduce single-game noise.
       </p>
-      <div class="visual">
+
+      <div class="metric-grid">
+        <div class="metric">
+          <span class="metric-value">0.683</span>
+          <span class="metric-label">ROC-AUC</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">135</span>
+          <span class="metric-label">Series</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">XGBoost</span>
+          <span class="metric-label">Best model</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">SHAP</span>
+          <span class="metric-label">Explanation</span>
+        </div>
+      </div>
+
+      <h2>Problem</h2>
+      <p>
+        Individual playoff games are noisy. A seven-game series is a better unit for measuring
+        team quality because the stronger team has multiple chances to reveal its advantage.
+        This project asks whether regular-season efficiency and team-quality features can rank
+        series outcomes better than a naive seed-based baseline.
+      </p>
+
+      <h2>Method</h2>
+      <p>
+        The project aggregates playoff matchups to the series level and builds features from
+        regular-season team quality, efficiency, pace, win percentage, turnover rate, offensive
+        rating, defensive rating, and playoff-history indicators. Logistic regression, random
+        forest, and XGBoost are compared on temporally held-out playoff seasons.
+      </p>
+
+      <h2>Result</h2>
+      <p>
+        XGBoost produced the strongest ranking performance with a 0.683 ROC-AUC on the held-out
+        2022-2024 seasons. SHAP analysis identified offensive rating differential, turnover rate,
+        underdog quality, and playoff experience as important signals.
+      </p>
+
+      <div class="figure">
         <img src="nba-playoffs/championship_prob_2025-26.png" alt="NBA championship probability chart">
+        <div class="figure-caption">Generated championship probability visual from the project pipeline.</div>
       </div>
-    </section>
 
-    <section class="section">
-      <h2>Model Comparison</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>Accuracy</th>
-            <th>ROC-AUC</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>XGBoost</td>
-            <td>53.3%</td>
-            <td>0.683</td>
-          </tr>
-          <tr>
-            <td>Random Forest</td>
-            <td>56.7%</td>
-            <td>0.674</td>
-          </tr>
-          <tr>
-            <td>Logistic Regression</td>
-            <td>53.3%</td>
-            <td>0.647</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="section">
-      <h2>What It Demonstrates</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Series-level modeling</h3>
-          <p>Reduces single-game noise by predicting best-of-seven playoff matchups.</p>
-        </div>
-        <div class="card">
-          <h3>Temporal validation</h3>
-          <p>Uses recent playoff seasons as holdout data instead of random leakage-prone splits.</p>
-        </div>
-        <div class="card">
-          <h3>Explainability</h3>
-          <p>Uses SHAP to communicate drivers such as offensive rating differential and opponent quality.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Repository Files</h2>
-      <p class="lead">
-        The full repository snapshot is included in this folder, including notebooks, scripts,
-        generated visuals, and documentation.
-      </p>
       <div class="actions">
-        <a class="button primary" href="README.md">Read Repository README</a>
-        <a class="button" href="nba-playoffs/README.md">Read Project README</a>
-        <a class="button" href="nba-playoffs/bracket_2025-26.png">View Bracket</a>
+        <a class="button primary" href="README.md">Repository README</a>
+        <a class="button" href="nba-playoffs/README.md">Project README</a>
+        <a class="button" href="nba-playoffs/bracket_2025-26.png">Bracket visual</a>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', function () {
+      const isOpen = navLinks.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
 </body>
 </html>
