@@ -588,6 +588,21 @@
       line-height: 1.55;
     }
 
+    .project-row-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+      font-size: 10px;
+    }
+
+    .project-row-links a {
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .project-row-links a:hover { text-decoration: underline; }
+
     .project-badge {
       flex-shrink: 0;
       font-size: 9px;
@@ -923,6 +938,7 @@
             <div class="project-row-left">
               <div class="project-row-title"><a href="projects/mlb-biomechanics/">MLB Biomechanics Performance Model</a></div>
               <div class="project-row-desc">Pitching biomechanics MVP using OpenBiomechanics motion-capture data, engineered kinetic-chain metrics, ridge velocity modeling, and a Statcast performance bridge for whiff, chase, hard-hit, and run-value outcomes</div>
+              <div class="project-row-links"><a href="https://github.com/michael-early/mlb-biomechanics" target="_blank" rel="noopener">GitHub repo →</a></div>
             </div>
             <span class="project-badge">Sports ML</span>
           </div>
@@ -937,6 +953,7 @@
             <div class="project-row-left">
               <div class="project-row-title"><a href="projects/nba-playoffs-predictor/">NBA Playoff Series Predictor</a></div>
               <div class="project-row-desc">Series-level playoff model using pre-series regular-season features, temporal validation, XGBoost, SHAP explainability, and generated bracket probability visuals</div>
+              <div class="project-row-links"><a href="https://github.com/michael-early/nba-playoffs-predictor" target="_blank" rel="noopener">GitHub repo →</a></div>
             </div>
             <span class="project-badge">Sports ML</span>
           </div>
